@@ -3,6 +3,7 @@ import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/login/login";
+import Register from "./components/register/register";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
               </Route>
               <Route path="/login" exact={true}>
                   <Login/>
+              </Route>
+              <Route path="/register" exact={true}>
+                  <Register/>
               </Route>
         </BrowserRouter>
       </div>
