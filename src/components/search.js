@@ -2,17 +2,18 @@ import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import cocktailService from "../services/cocktail-service"
 
-const SearchScreen = () => {
+const Search = () => {
     const history = useHistory()
     const {name} = useParams()
-    const [searchName, setSearchName] = useState(name)
+    const [searchName, setSearchName] = useState("")
     const [results, setResults] = useState({drinks: []})
     useEffect(() => {
         setSearchName(name)
-        findCocktailByName(name)
-    }, [])
+        if (name) {
+            findCocktailByName(name)
+        }
+    }, [name])
     const findCocktailByName = (name) => {
-        history.push(name)
         cocktailService.findCocktailByName(name)
             .then((results) => {
                 setResults(results)
@@ -20,7 +21,7 @@ const SearchScreen = () => {
     }
     return(
         <div>
-            <h2>Search Screen</h2>
+            <h2>Search</h2>
             <div className="row">
                 <div className="col-9">
                     <input value={searchName}
@@ -32,7 +33,7 @@ const SearchScreen = () => {
                 <div className="col-3">
                     <button
                         onClick={() => {
-                            findCocktailByName(searchName)
+                            history.push(`/search/${searchName}`)
                         }}
                         className="btn btn-primary btn-block">
                         Search
@@ -42,20 +43,19 @@ const SearchScreen = () => {
             <br/>
             <ul className="list-group">
                 {
-                    // results && results.drinks && results.drinks.map((drink) => {
-                    //     return(
-                    //         <li className="list-group-item">
-                    //             <Link to={`/details/${drink.idDrink}`}>
-                    //                 {drink}
-                    //             </Link>
-                    //         </li>
-                    //     )
-                    // })
-                    JSON.stringify(results)
+                    results && results.drinks && results.drinks.map((drink) => {
+                        return(
+                            <li className="list-group-item" key={drink.idDrink}>
+                                <Link to={`/details/${drink.idDrink}`}>
+                                    {drink.strDrink}
+                                </Link>
+                            </li>
+                        )
+                    })
                 }
             </ul>
         </div>
     )
 }
 
-export default SearchScreen
+export default Search

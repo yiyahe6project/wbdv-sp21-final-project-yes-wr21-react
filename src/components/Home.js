@@ -1,19 +1,15 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
-const HomeScreen = () => {
+const Home = () => {
     return(
         <div>
-            <h2>Home Screen</h2>
+            <h2>Home</h2>
             <Link to="/search">
                 Search
-            </Link>
-            <br/>
-            <Link to="/details">
-                Details
             </Link>
         </div>
     )
 }
 
-export default HomeScreen
+export default Home
