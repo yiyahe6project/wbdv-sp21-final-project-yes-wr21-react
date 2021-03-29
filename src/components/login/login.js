@@ -32,16 +32,16 @@ const Login = () => {
                        className="btn btn-primary btn-block">
                         Sign in
                     </a>
-                    <a href="../index.html" className="btn btn-danger btn-block"> Cancel </a>
+                    <Link to="/" className="btn btn-danger btn-block"> Cancel </Link>
                     <div className="row">
                         <div className="col-6">
                             <a href="">Forgot Password</a>
                         </div>
                         <div className="col-6">
-                            <a href="../register/register.template.client.html"
+                            <Link to="/register"
                                className="float-right">
                                 Sign up
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
