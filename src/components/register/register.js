@@ -51,10 +51,10 @@ const Register = () => {
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"/>
                 <div className="col-sm-10">
-                    <a href="../profile/profile.template.client.html"
+                    <Link to="/profile"
                        className="btn btn-primary btn-block">
                         Sign up
-                    </a>
+                    </Link>
                     <Link to="/" className="btn btn-danger btn-block"> Cancel </Link>
                     <div className="row">
                         <div className="col-6">
