@@ -75,4 +75,10 @@ const Register = () => {
     )
 }
 
+const stpm = (state) => {
+    return {
+        topics: state.topicReducer.topics
+    }
+}
+
 export default Register

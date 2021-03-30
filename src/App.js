@@ -2,9 +2,9 @@ import Search from "./components/search";
 import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/Home";
-import Login from "./components/login/login";
-import Register from "./components/register/register";
-import Profile from "./components/profile/profile";
+import Login from "./components/users/login/login";
+import Register from "./components/users/register/register";
+import Profile from "./components/users/profile/profile";
 
 function App() {
   return (
@@ -20,14 +20,17 @@ function App() {
               <Route path="/details/:id" exact={true}>
                   <Details/>
               </Route>
-              <Route path="/login" exact={true}>
-                  <Login/>
+              <Route path="/login"
+                     exact={true}
+                     component={Login}>
               </Route>
-              <Route path="/register" exact={true}>
-                  <Register/>
+              <Route path="/register"
+                     exact={true}
+                     component={Register}>
               </Route>
-              <Route path="/profile" exact={true}>
-                  <Profile/>
+              <Route path="/profile"
+                     exact={true}
+                     component={Profile}>
               </Route>
         </BrowserRouter>
       </div>
