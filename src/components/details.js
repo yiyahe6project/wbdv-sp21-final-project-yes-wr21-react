@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useHistory, useParams} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 import cocktailService from '../services/cocktail-service'
 
 const Details = () => {
@@ -40,7 +40,9 @@ const Details = () => {
             {/*<button onClick={()=>{history.goBack()}}>Back</button>*/}
 
             <h2>{drink.strDrink}</h2>
-            <img className="float-right" src={drink.strDrinkThumb}/><br/>
+            <img className="float-right"
+                 alt={drink.strRink}
+                 src={drink.strDrinkThumb}/><br/>
             <p>
                 <b>Category: </b>
                 {drink.strCategory}
