@@ -5,7 +5,13 @@ import Home from "./components/Home";
 import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
+import Admin from "./components/admin/admin";
+import ProductTable from "./components/admin/product-table";
+import BuyerTable from "./components/admin/buyer-table";
+import SellerTable from "./components/admin/seller-table";
+import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
+
 
 function App() {
   return (
@@ -33,6 +39,24 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
+
+              <Route path={["/admin", "/admin/products"]}
+                     exact={true}
+                     component={Admin}>
+              </Route>
+              {/*<Route path="/admin/products"*/}
+              {/*       exact={true}*/}
+              {/*       component={ProductTable}>*/}
+              {/*</Route>*/}
+              {/*<Route path="/admin/buyers"*/}
+              {/*       exact={true}*/}
+              {/*       component={BuyerTable}>*/}
+              {/*</Route>*/}
+              {/*<Route path="/admin/sellers"*/}
+              {/*       exact={true}*/}
+              {/*       component={SellerTable}>*/}
+              {/*</Route>*/}
+
               <Route path="/store/:sellerId"
                      exact={true}>
                   <SellerStore/>
