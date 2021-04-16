@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import userService from "../../../services/user-service";
 import productService from "../../../services/products-service";
 import drinkService from "../../../services/drink-service";
-import cocktailService from "../../../services/cocktail-service";
+import ProductList from "../product-list/product-list";
 
 const SellerStore = ({}) => {
 
@@ -97,9 +97,14 @@ const SellerStore = ({}) => {
                 <h1>{sellerInfo.storeName}</h1>
 
                 <div className='row'>
+                    <h2 className='col-6'> Total Revenue: </h2>
+                </div>
+                <br/>
+
+                <div className='row'>
                     <h2 className='col-10'> Add a new product:</h2>
                 </div>
-
+                <br/>
                 <div className='row'>
                     <div className='col-4'>
                         <select
@@ -175,6 +180,11 @@ const SellerStore = ({}) => {
 
                 <div className='row'>
                     <h2 className='col-10'> My products:</h2>
+                </div>
+
+                <div>
+                    <ProductList
+                        productList={productList}/>
                 </div>
 
             </div>
