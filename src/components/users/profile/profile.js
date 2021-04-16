@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerProfile from "./seller-profile";
+import BuyerProfile from "./buyer-profile";
 
 export default class Profile extends React.Component {
     state = {
@@ -165,6 +166,14 @@ export default class Profile extends React.Component {
                         <SellerProfile
                             state={this.state.profile}
                         />
+                    </>
+                }
+
+                {
+                    this.state.profile.role === "Buyer" &&
+                    <>
+                        <BuyerProfile
+                        state={this.state.profile}/>
                     </>
                 }
 
