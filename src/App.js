@@ -39,15 +39,12 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
+              <Route path="/admin"
 
-              <Route path={["/admin", "/admin/products"]}
                      exact={true}
                      component={Admin}>
               </Route>
-              {/*<Route path="/admin/products"*/}
-              {/*       exact={true}*/}
-              {/*       component={ProductTable}>*/}
-              {/*</Route>*/}
+
               {/*<Route path="/admin/buyers"*/}
               {/*       exact={true}*/}
               {/*       component={BuyerTable}>*/}
