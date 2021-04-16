@@ -5,10 +5,10 @@ const BuyerProfile = ({state}) => {
         <>
             <br/>
             <div className='mb-3 row'>
-                <h5>Recipient Info</h5>
+                <h5>Buyer Info</h5>
             </div>
             <div className="mb-3 row">
-                <label htmlFor="storeName" className="col-sm-2 col-form-label">Recipient name</label>
+                <label htmlFor="storeName" className="col-sm-2 col-form-label">Buyer name</label>
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="recipientName"

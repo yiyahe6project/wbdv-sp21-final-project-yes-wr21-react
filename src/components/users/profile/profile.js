@@ -52,14 +52,6 @@ export default class Profile extends React.Component {
             <div className="container">
                 <h1>Personal Profile</h1>
 
-                {/*<div className="alert alert-danger" role="alert">*/}
-                {/*    Something went wrong!*/}
-                {/*</div>*/}
-
-                {/*<div className="alert alert-success" role="alert">*/}
-                {/*    Update Successfully!*/}
-                {/*</div>*/}
-
                 <div className="mb-3 row">
                     <label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
                     <div className="col-sm-10">
@@ -173,28 +165,40 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Buyer" &&
                     <>
                         <BuyerProfile
-                        state={this.state.profile}/>
-                    </>
-                }
+                            state={this.state.profile}
+                        />
+                        {/*<div className="form-group row">*/}
+                        {/*    <label className="col-sm-2 col-form-label"/>*/}
+                        {/*    <div className="col-sm-10">*/}
 
-                {/*<div className="mb-3 row">*/}
-                {/*    <label htmlFor="dob" className="col-sm-2 col-form-label">*/}
-                {/*        DOB*/}
-                {/*    </label>*/}
-                {/*    <div className="col-sm-10">*/}
-                {/*        <input type="date"*/}
-                {/*               className="form-control"*/}
-                {/*               title="Please enter your DOB"*/}
-                {/*               id="dob"/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                        {/*        <Link to="/Search" className="btn btn-success btn-block">*/}
+                        {/*            Update*/}
+                        {/*        </Link>*/}
+                        {/*        <button*/}
+                        {/*            className="btn btn-danger btn-block"*/}
+                        {/*            onClick={()=>this.handleLogout()}>*/}
+                        {/*            Log out*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+
+                        {/*<div className="mb-3 row">*/}
+                        {/*    <div className="col-sm-10">*/}
+                        {/*        <Link to="/">*/}
+                        {/*            <i className="fa fa-home"/> Back to homepage*/}
+                        {/*        </Link>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                    </>
+
+                }
 
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"/>
                     <div className="col-sm-10">
                         {/*todo:
-                    what to do if successfully updated?
-                    */}
+                            what to do if successfully updated?
+                            */}
                         <Link to="/Search" className="btn btn-success btn-block">
                             Update
                         </Link>
