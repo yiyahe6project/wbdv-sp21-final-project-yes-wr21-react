@@ -9,12 +9,15 @@ const register = (user) =>
         },
         credentials: "include"
     }).then(response => response.json())
+        .catch((error) => {console.log(error)})
 
 const profile = () =>
     fetch(`${USER_URL}/profile`, {
         method: 'POST',
         credentials: "include"
-    }).then(response => response.json())
+    }).then(response => {
+        return response.json()
+    })
 
 const logout = () =>
     fetch(`${USER_URL}/logout`, {
@@ -30,7 +33,9 @@ const login = (user) =>
             'content-type': 'application/json'
         },
         credentials: "include"
-    }).then(response => response.json())
+    }).then(response => {
+        return response.json()
+    })
 
 const userService = {
     register,
