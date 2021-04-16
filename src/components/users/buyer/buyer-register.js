@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
+const BuyerRegister = ({state, updateStoreName, updateStorageLocation}) => {
     return (
         <>
             <br/>
@@ -14,7 +14,7 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                            id="recipientName"
                            value={state.storeName}
                            onChange={(e) => {
-                               updateRecipientName(e.target.value)
+                               updateStoreName(e.target.value)
                            }}
                            placeholder="Example: David"/>
                 </div>
@@ -26,9 +26,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="AddressLineOne"
-                           value={state.DeliveryAddress.addressLineOne}
+                           value={state.storageLocation.addressLineOne}
                            onChange={(e) =>
-                               updateDeliveryAddress({addressLineOne: e.target.value})}
+                               updateStorageLocation({addressLineOne: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -39,9 +39,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="AddressLineTwo"
-                           value={state.DeliveryAddress.addressLineTwo}
+                           value={state.storageLocation.addressLineTwo}
                            onChange={(e) =>
-                               updateDeliveryAddress({addressLineTwo: e.target.value})}
+                               updateStorageLocation({addressLineTwo: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -52,9 +52,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="buyerCity"
-                           value={state.DeliveryAddress.city}
+                           value={state.storageLocation.city}
                            onChange={(e) =>
-                               updateDeliveryAddress({city: e.target.value})}
+                               updateStorageLocation({city: e.target.value})}
                            placeholder="Example: Santa Clara"/>
                 </div>
             </div>
@@ -65,9 +65,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="buyerState"
-                           value={state.DeliveryAddress.state}
+                           value={state.storageLocation.state}
                            onChange={(e) =>
-                               updateDeliveryAddress({state: e.target.value})}
+                               updateStorageLocation({state: e.target.value})}
                            placeholder="Example: CA"/>
                 </div>
             </div>
@@ -78,9 +78,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="buyerPostalCode"
-                           value={state.DeliveryAddress.postalCode}
+                           value={state.storageLocation.postalCode}
                            onChange={(e) =>
-                               updateDeliveryAddress({postalCode: e.target.value})}
+                               updateStorageLocation({postalCode: e.target.value})}
                            placeholder="Example: 94115"/>
                 </div>
             </div>
@@ -91,9 +91,9 @@ const BuyerRegister = ({state, updateRecipientName, updateDeliveryAddress}) => {
                 <div className="col-sm-10">
                     <input className="form-control wbdv-field wbdv-username"
                            id="buyerCountry"
-                           value={state.DeliveryAddress.country}
+                           value={state.storageLocation.country}
                            onChange={(e) =>
-                               updateDeliveryAddress({country: e.target.value})}
+                               updateStorageLocation({country: e.target.value})}
                            placeholder="Example: USA"/>
                 </div>
             </div>
