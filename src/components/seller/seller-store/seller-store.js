@@ -77,7 +77,7 @@ const SellerStore = ({}) => {
                 const newProduct = {
                     drink: findDrink,
                     quantity: quantity.toString(),
-                    price: quantity.toString(),
+                    price: price.toString(),
                     seller: sellerId
                 }
                 console.log(newProduct)
@@ -108,19 +108,19 @@ const SellerStore = ({}) => {
                 <div className='row'>
                     <div className='col-4'>
                         <select
-                            defaultChecked={"Please select the type"}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 setSelectedCate(e.target.value)
                             }}
+                            defaultValue={'none'}
                             className="form-control">
-                            <option value="none" selected disabled hidden>
+                            <option value="none" disabled hidden>
                                 Select a type
                             </option>
                             {
-                                drinksCategories.map((cate) => {
+                                drinksCategories.map((cate, index) => {
                                     return (<option
-                                        key={cate._id}
+                                        key={index}
                                         value={cate}>{cate}</option>)
                                 })
                             }
@@ -129,18 +129,19 @@ const SellerStore = ({}) => {
 
                     <div className='col-4'>
                         <select
-                            defaultChecked={"Please select the drink"}
+                            // defaultChecked={"Please select the drink"}
                             onChange={(e) => {
                                 setSelectedDrink(e.target.value)
                             }}
+                            defaultValue={'none'}
                             className="form-control">
-                            <option value="none" selected disabled hidden>
+                            <option value="none" disabled hidden>
                                 Select a drink
                             </option>
                             {
-                                drinksByCate.map((drink) => {
+                                drinksByCate.map((drink, index) => {
                                     return (<option
-                                        key={drink._id}
+                                        key={index}
                                         value={drink.idDrink}>{drink.nameDrink}</option>)
                                 })
                             }

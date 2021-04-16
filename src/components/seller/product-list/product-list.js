@@ -7,8 +7,8 @@ const ProductList = ({productList}) => {
                 productList.map((product) => {
                     const drink = product.drink
                     return (
-                        <li className='list-group-item'
-                            key={drink.idDrink}>
+                        <li key={drink._id}
+                            className='list-group-item'>
                             <div className='row'>
                                 <h4>Product name:</h4>
                                 <h4 className='ml-3'>{drink.nameDrink}</h4>
