@@ -19,8 +19,13 @@ const BuyerTable = () => {
                 <tr>
                     <tr>
                         <td colSpan="2">
-                            <Link to="">
+                            <Link to="profile">
                                 buyerA
+                            </Link>
+                        </td>
+                        <td>
+                            <Link to="orders">
+                                orders
                             </Link>
                         </td>
                     </tr>
