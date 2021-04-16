@@ -32,7 +32,13 @@ export default class Register extends React.Component {
             if (this.state.password === this.state.verifyPassword) {
                 console.log(user)
                 userService.register(user)
-                    .then(newUser => this.props.history.push('/profile'))
+                    .then(newUser => {
+                        if (newUser) {
+                            this.props.history.push('/profile')
+                        } else {
+                            alert("username or store name are taken")
+                        }
+                    })
             } else {
                 alert("Password doesn't match!")
             }
@@ -58,6 +64,51 @@ export default class Register extends React.Component {
         return (
             <div className="container">
                 <h1>Register</h1>
+
+                <div className="mb-3 row">
+                    <label htmlFor="firstName" className="col-sm-2 col-form-label">First name</label>
+                    <div className="col-sm-10">
+                        <input className="form-control wbdv-field wbdv-username"
+                               id="firstName"
+                               value={this.state.names.firstName}
+                               onChange={(e)=>{
+                                   const curName = this.state.names
+                                   curName.firstName = e.target.value
+                                   this.setState({names : curName})
+                               }}
+                               placeholder="Example: Alice"/>
+                    </div>
+                </div>
+
+                <div className="mb-3 row">
+                    <label htmlFor="middleName" className="col-sm-2 col-form-label">Middle name (optimal)</label>
+                    <div className="col-sm-10">
+                        <input className="form-control wbdv-field wbdv-username"
+                               id="middleName"
+                               value={this.state.names.middleName}
+                               onChange={(e)=>{
+                                   const curName = this.state.names
+                                   curName.middleName = e.target.value
+                                   this.setState({names : curName})
+                               }}
+                               placeholder="Example: Alice"/>
+                    </div>
+                </div>
+
+                <div className="mb-3 row">
+                    <label htmlFor="lastName" className="col-sm-2 col-form-label">Last name</label>
+                    <div className="col-sm-10">
+                        <input className="form-control wbdv-field wbdv-username"
+                               id="lastName"
+                               value={this.state.names.lastName}
+                               onChange={(e)=>{
+                                   const curName = this.state.names
+                                   curName.lastName = e.target.value
+                                   this.setState({names : curName})
+                               }}
+                               placeholder="Example: Alice"/>
+                    </div>
+                </div>
 
                 <div className="mb-3 row">
                     <label htmlFor="username" className="col-sm-2 col-form-label">Username</label>

@@ -6,20 +6,23 @@ const register = (user) =>
         body: JSON.stringify(user),
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        credentials: "include"
     }).then(response => response.json())
-        .catch(error => {
-            console.log(error)
-        })
+        .catch((error) => {console.log(error)})
 
 const profile = () =>
     fetch(`${USER_URL}/profile`, {
-        method: 'POST'
-    }).then(response => response.json())
+        method: 'POST',
+        credentials: "include"
+    }).then(response => {
+        return response.json()
+    })
 
 const logout = () =>
     fetch(`${USER_URL}/logout`, {
-        method: 'POST'
+        method: 'POST',
+        credentials: "include"
     })
 
 const login = (user) =>
@@ -28,8 +31,11 @@ const login = (user) =>
         body: JSON.stringify(user),
         headers: {
             'content-type': 'application/json'
-        }
-    }).then(response => response.json())
+        },
+        credentials: "include"
+    }).then(response => {
+        return response.json()
+    })
 
 const userService = {
     register,

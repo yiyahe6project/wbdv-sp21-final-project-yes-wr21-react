@@ -1,21 +1,43 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
+import SellerProfile from "./seller-profile";
 
 export default class Profile extends React.Component {
     state = {
         profile: {
+            names: {
+                firstName: '',
+                middleName: '',
+                lastName: ''
+            },
             username: '',
             password: '',
-            verifyPassword: ''
+            verifyPassword: '',
+            role: '',
+            storageLocation: {
+                addressLineOne: '',
+                addressLineTwo: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: ''
+            },
+            storeName: ''
         }
     }
 
     componentDidMount() {
         userService.profile()
-            .then(profile => this.setState({
-                profile: profile
-            }))
+            .catch(error => {
+                alert("Not logged In!")
+                this.props.history.push('/')
+            })
+            .then(profile => {
+                this.setState({profile: profile})
+                console.log(profile)
+                console.log(this.state.profile.names.firstName)
+            })
     }
 
     handleLogout = () =>
@@ -77,41 +99,74 @@ export default class Profile extends React.Component {
                     </div>
                 </div>
 
-                {/*<div className="mb-3 row">*/}
-                {/*    <label htmlFor="phone" className="col-sm-2 col-form-label">*/}
-                {/*        Phone*/}
-                {/*    </label>*/}
-                {/*    <div className="col-sm-10">*/}
-                {/*        <input type="tel"*/}
-                {/*               className="form-control"*/}
-                {/*               id="phone"*/}
-                {/*               placeholder="(857)-123-8577"/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div className="mb-3 row">
+                    <label htmlFor="firstName" className="col-sm-2 col-form-label">
+                        First Name
+                    </label>
+                    <div className="col-sm-10">
+                        <input type="tel"
+                               className="form-control"
+                               id="firstName"
+                               readOnly
+                               value={this.state.profile.names.firstName}
+                        />
+                    </div>
+                </div>
 
-                {/*<div className="mb-3 row">*/}
-                {/*    <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>*/}
-                {/*    <div className="col-sm-10">*/}
-                {/*        <input type="email"*/}
-                {/*               className="form-control"*/}
-                {/*               title="Please enter a valid email"*/}
-                {/*               placeholder="alice@wonderland"*/}
-                {/*               id="email"/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div className="mb-3 row">
+                    <label htmlFor="middleName" className="col-sm-2 col-form-label">
+                        Middle Name
+                    </label>
+                    <div className="col-sm-10">
+                        <input type="tel"
+                               className="form-control"
+                               id="middleName"
+                               readOnly
+                               value={this.state.profile.names.middleName}
+                        />
+                    </div>
+                </div>
 
-                {/*<div className="mb-3 row">*/}
-                {/*    <label htmlFor="role" className="col-sm-2 col-form-label">*/}
-                {/*        Role*/}
-                {/*    </label>*/}
-                {/*    <div className="col-sm-10">*/}
-                {/*        <select id="role" className="form-control">*/}
-                {/*            <option>Faculty</option>*/}
-                {/*            <option>Student</option>*/}
-                {/*            <option>Staff</option>*/}
-                {/*        </select>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+
+                <div className="mb-3 row">
+                    <label htmlFor="lastName" className="col-sm-2 col-form-label">
+                        Last Name
+                    </label>
+                    <div className="col-sm-10">
+                        <input type="tel"
+                               className="form-control"
+                               id="lastName"
+                               readOnly
+                               value={this.state.profile.names.lastName}
+                        />
+                    </div>
+                </div>
+
+
+                <div className="mb-3 row">
+                    <label htmlFor="role" className="col-sm-2 col-form-label">
+                        Role
+                    </label>
+                    <div className="col-sm-10">
+                        <select id="role"
+                                disabled={true}
+                                value={this.state.profile.role}
+                                className="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="Buyer">Buyer</option>
+                            <option value="Seller">Seller</option>
+                        </select>
+                    </div>
+                </div>
+
+                {
+                    this.state.profile.role === "Seller" &&
+                    <>
+                        <SellerProfile
+                            state={this.state.profile}
+                        />
+                    </>
+                }
 
                 {/*<div className="mb-3 row">*/}
                 {/*    <label htmlFor="dob" className="col-sm-2 col-form-label">*/}
