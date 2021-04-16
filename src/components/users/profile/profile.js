@@ -183,9 +183,6 @@ export default class Profile extends React.Component {
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"/>
                     <div className="col-sm-10">
-                        {/*todo:
-                    what to do if successfully updated?
-                    */}
                         <Link to="/Search" className="btn btn-success btn-block">
                             Update
                         </Link>
