@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerRegister from "./seller-register";
+import BuyerRegister from "../buyer/buyer-register";
 
 export default class Register extends React.Component {
     state = {
@@ -25,6 +26,27 @@ export default class Register extends React.Component {
         storeName: ''
     }
 
+    buyer = {
+        names: {
+            firstName: '',
+            middleName: '',
+            lastName: ''
+        },
+        username: '',
+        password: '',
+        verifyPassword: '',
+        role: '',
+        DeliveryAddress: {
+            addressLineOne: '',
+            addressLineTwo: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: ''
+        },
+        recipientName: ''
+    }
+
     handleRegister = (user) => {
         if (this.state.username === '' || this.state.password === '') {
             alert("You have to give a username and password")
@@ -46,12 +68,26 @@ export default class Register extends React.Component {
     }
 
     updateStorageLocation = (storageLocationUpdate) => {
-        // console.log(storageLocationUpdate)
+        console.log(storageLocationUpdate)
         const name = Object.keys(storageLocationUpdate)[0]
-        // console.log(storageLocationUpdate[name])
+        console.log(storageLocationUpdate[name])
         const currentStorage = this.state.storageLocation
         currentStorage[name] = storageLocationUpdate[name]
         this.setState({storageLocation: currentStorage})
+    }
+
+    // for buyer
+    updateRecipientName = (name) => {
+        this.setState({recipientName: name})
+    }
+
+    updateDeliveryAddress = (deliveryAddressUpdate) => {
+        console.log(deliveryAddressUpdate)
+        const name = Object.keys(deliveryAddressUpdate)[0]
+        console.log(deliveryAddressUpdate[name])
+        const currentDelivery = this.buyer.DeliveryAddress
+        currentDelivery[name] = deliveryAddressUpdate[name]
+        this.setState({storageLocation: currentDelivery})
     }
 
     render() {
@@ -126,6 +162,16 @@ export default class Register extends React.Component {
                         state={this.state}
                         updateStoreName={this.updateStoreName}
                         updateStorageLocation={this.updateStorageLocation}/>
+                    </>
+                }
+                {
+                    this.state.role === "Buyer" &&
+                    <>
+                        <BuyerRegister
+                        state={this.buyer}
+                        updateRecipientName={this.updateRecipientName}
+                        updateDeliveryAddress={this.updateDeliveryAddress}
+                        />
                     </>
                 }
 

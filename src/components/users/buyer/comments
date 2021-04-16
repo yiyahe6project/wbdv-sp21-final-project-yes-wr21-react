@@ -1,0 +1,5 @@
+唯一要商量的就是 你buyer 需要我seller的什么信息
+user 可以根据一个drink 能看到list of seller 这个样子 然后买
+
+展示一部分在DB里的available的cocktail的名字，点击每个cocktail 就direct去a list of sellers
+
