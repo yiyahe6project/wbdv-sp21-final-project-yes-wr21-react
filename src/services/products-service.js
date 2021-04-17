@@ -1,4 +1,4 @@
-const PRODUCT_URL = process.env.NODE_API
+const PRODUCT_URL = process.env.REACT_APP_API_URL
 
 const findProductsForSeller = (sellerId) =>
     fetch(`${PRODUCT_URL}/products/${sellerId}`, {

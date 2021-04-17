@@ -1,4 +1,4 @@
-const DRINK_URL = process.env.NODE_API
+const DRINK_URL = process.env.REACT_APP_API_URL
 
 const findDrinksCategories = () =>
     fetch(`${DRINK_URL}/drinks/categories`, {

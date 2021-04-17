@@ -1,4 +1,4 @@
-const USER_URL = process.env.NODE_API
+const USER_URL = process.env.REACT_APP_API_URL
 
 const register = (user) =>
     fetch(`${USER_URL}/register`, {
