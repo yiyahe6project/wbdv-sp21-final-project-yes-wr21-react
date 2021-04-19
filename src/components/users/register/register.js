@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerRegister from "./seller-register";
-import BuyerRegister from "../buyer/buyer-register";
+import BuyerRegister from "../../buyer/buyer-register";
 
 export default class Register extends React.Component {
     state = {
