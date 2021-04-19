@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
+import SellerStore from "./components/seller/seller-store/seller-store";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
               <Route path="/profile"
                      exact={true}
                      component={Profile}>
+              </Route>
+              <Route path="/store/:sellerId"
+                     exact={true}>
+                  <SellerStore/>
               </Route>
         </BrowserRouter>
       </div>
