@@ -1,11 +1,18 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 const BuyerProfile = ({state}) => {
     return (
         <>
             <br/>
             <div className='mb-3 row'>
-                <h5>Buyer Info</h5>
+                <h5 className='col-sm-2'>Buyer Info</h5>
+                <div className="col-sm-10">
+                    <Link to={`/store/buyer/${state._id}`}
+                    className="btn btn-success btn-block">
+                        Go Shopping
+                    </Link>
+                </div>
             </div>
             <div className="mb-3 row">
                 <label htmlFor="storeName" className="col-sm-2 col-form-label">Buyer name</label>

@@ -6,6 +6,7 @@ import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
 import SellerStore from "./components/seller/seller-store/seller-store";
+import BuyerStore from "./components/buyer/buyer-store/buyer-store";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
               <Route path="/store/:sellerId"
                      exact={true}>
                   <SellerStore/>
+              </Route>
+              <Route path="/store/buyer/:buyerId" exact={true}>
+                  <BuyerStore/>
               </Route>
         </BrowserRouter>
       </div>
