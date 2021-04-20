@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import userService from "../../../services/user-service";
 import productService from "../../../services/products-service";
 import drinkService from "../../../services/drink-service";
 import ProductList from "../product-list/product-list";
+import "./seller-store.css"
 
 const SellerStore = ({}) => {
-
+    let history = useHistory()
     const {sellerId} = useParams()
     const [sellerInfo, setSellerInfo] = useState({
         storeName: ''
@@ -21,12 +22,11 @@ const SellerStore = ({}) => {
     const [quantity, setQuantity] = useState(0)
 
     useEffect(()=> {
-        if (sellerId !== "undefined"
-            && typeof sellerId !== "undefined") {
+        if (sellerId !== "undefined" && typeof sellerId !== "undefined") {
             userService.profile()
                 .catch(error => {
-                    alert("Not logged In!")
-                    this.props.history.push('/')
+                    alert("Not logged in as a Seller!")
+                    history.push('/')
                 })
                 .then(profile => {
                     setSellerInfo(profile)
@@ -64,8 +64,6 @@ const SellerStore = ({}) => {
                 return product
             }
         })
-        console.log(selectedDrink)
-        console.log(findDrink)
         if (findDrink) {
             if (quantity === 0 || price === 0) {
                 alert("You sure about price and quantity are correct?")
@@ -89,6 +87,31 @@ const SellerStore = ({}) => {
         } else {
             alert("You have to select a drink to add a product!")
         }
+    }
+
+    const updateProduct = (updatedProduct) => {
+        productService.updateProduct(updatedProduct._id, updatedProduct)
+            .then((res) => {
+                // console.log(actualProduct)
+                let updatedProducts = productList.map(product => {
+                    if (product._id === updatedProduct._id) {
+                        return updatedProduct
+                    } else {
+                        return product
+                    }
+                })
+                setProductList(updatedProducts)
+            })
+    }
+
+    const deleteProduct = (deletedProduct) => {
+        productService.deleteProduct(deletedProduct._id)
+            .then((res) => {
+                let updatedProducts = productList.filter(product => {
+                    return product._id !== deletedProduct._id
+                })
+                setProductList(updatedProducts)
+            })
     }
 
     return (
@@ -185,6 +208,8 @@ const SellerStore = ({}) => {
 
                 <div>
                     <ProductList
+                        updateProduct={updateProduct}
+                        deleteProduct={deleteProduct}
                         productList={productList}/>
                 </div>
 

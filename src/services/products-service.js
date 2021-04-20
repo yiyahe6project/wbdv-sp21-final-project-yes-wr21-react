@@ -15,9 +15,25 @@ const createProduct = (product) =>
         }
     }).then((response) => response.json())
 
+const updateProduct = (productId, product) =>
+    fetch(`${PRODUCT_URL}/products/${productId}`, {
+        method: 'PUT',
+        body: JSON.stringify(product),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then((response) => response.json())
+
+const deleteProduct = (productId) =>
+    fetch(`${PRODUCT_URL}/products/${productId}`, {
+        method: 'DELETE'
+    }).then(response => response.json())
+
 const productService = {
     findProductsForSeller,
-    createProduct
+    createProduct,
+    updateProduct,
+    deleteProduct
 }
 
 export default productService
