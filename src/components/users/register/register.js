@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerRegister from "./seller-register";
+import AddressRegister from "./address-register";
 
 export default class Register extends React.Component {
     state = {
@@ -13,6 +14,14 @@ export default class Register extends React.Component {
         username: '',
         password: '',
         verifyPassword: '',
+        address: {
+            addressLineOne: '',
+            addressLineTwo: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: ''
+        },
         role: 'Buyer',
         storageLocation: {
             addressLineOne: '',
@@ -52,12 +61,17 @@ export default class Register extends React.Component {
     }
 
     updateStorageLocation = (storageLocationUpdate) => {
-        // console.log(storageLocationUpdate)
         const name = Object.keys(storageLocationUpdate)[0]
-        // console.log(storageLocationUpdate[name])
         const currentStorage = this.state.storageLocation
         currentStorage[name] = storageLocationUpdate[name]
         this.setState({storageLocation: currentStorage})
+    }
+
+    updateAddress = (addressUpdate) => {
+        const name = Object.keys(addressUpdate)[0]
+        const currentAddress = this.state.address
+        currentAddress[name] = addressUpdate[name]
+        this.setState({address: currentAddress})
     }
 
     render() {
@@ -152,6 +166,7 @@ export default class Register extends React.Component {
                     </div>
                 </div>
 
+
                 <div className="mb-3 row">
                     <label htmlFor="role" className="col-sm-2 col-form-label">
                         Role
@@ -169,6 +184,13 @@ export default class Register extends React.Component {
                         </select>
                     </div>
                 </div>
+
+                {
+                    this.state.role === 'Buyer' &&
+                    <AddressRegister
+                        state={this.state}
+                        updateAddress={this.updateAddress}/>
+                }
 
                 {
                     this.state.role === "Seller" &&

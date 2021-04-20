@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerProfile from "./seller-profile";
+import AddressProfile from "./address-profile";
 
 export default class Profile extends React.Component {
     state = {
@@ -15,6 +16,14 @@ export default class Profile extends React.Component {
             password: '',
             verifyPassword: '',
             role: '',
+            address: {
+                addressLineOne: '',
+                addressLineTwo: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: ''
+            },
             storageLocation: {
                 addressLineOne: '',
                 addressLineTwo: '',
@@ -168,17 +177,13 @@ export default class Profile extends React.Component {
                     </>
                 }
 
-                {/*<div className="mb-3 row">*/}
-                {/*    <label htmlFor="dob" className="col-sm-2 col-form-label">*/}
-                {/*        DOB*/}
-                {/*    </label>*/}
-                {/*    <div className="col-sm-10">*/}
-                {/*        <input type="date"*/}
-                {/*               className="form-control"*/}
-                {/*               title="Please enter your DOB"*/}
-                {/*               id="dob"/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                {
+                    this.state.profile.role === "Buyer" &&
+                    <>
+                        <AddressProfile
+                            state={this.state.profile}/>
+                    </>
+                }
 
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"/>
