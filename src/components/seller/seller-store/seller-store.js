@@ -119,9 +119,9 @@ const SellerStore = ({}) => {
             <div>
                 <h1>{sellerInfo.storeName}</h1>
 
-                <div className='row'>
-                    <h2 className='col-6'> Total Revenue: </h2>
-                </div>
+                {/*<div className='row'>*/}
+                {/*    <h2 className='col-6'> Total Revenue: </h2>*/}
+                {/*</div>*/}
                 <br/>
 
                 <div className='row'>
