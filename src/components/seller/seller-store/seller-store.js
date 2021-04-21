@@ -51,7 +51,7 @@ const SellerStore = ({}) => {
                         })
                 }
             })
-    },[sellerId, selectedCate])
+    },[sellerId])
 
     const handleAddADrink = () => {
         const findDrink = drinksByCate.find((drink) => {

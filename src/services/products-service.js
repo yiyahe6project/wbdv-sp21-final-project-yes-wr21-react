@@ -29,11 +29,17 @@ const deleteProduct = (productId) =>
         method: 'DELETE'
     }).then(response => response.json())
 
+const findProductsByDrink = (idDrink) =>
+    fetch(`${PRODUCT_URL}/drink/${idDrink}/products`, {
+        method: 'GET'
+    }).then((response => response.json()))
+
 const productService = {
     findProductsForSeller,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    findProductsByDrink
 }
 
 export default productService

@@ -58,15 +58,29 @@ export default class Profile extends React.Component {
     render() {
         return (
             <div className="container">
+                <br/>
+                {
+                    this.state.profile.role === "Buyer" &&
+                    <div className='mb-3 row'>
+                        <div className='col-3'>
+                            <button
+                                onClick={() => this.props.history.push('/search')}
+                                className='btn btn-success btn-block'>Search drinks</button>
+                        </div>
+                        <div className='col-3'>
+                            <button className='btn btn-success btn-block'>Browse products</button></div>
+                        <div className='col-3'>
+                            <button className='btn btn-success btn-block'>Browse stores</button></div>
+                        <div className='col-3'>
+                            <button className='btn btn-success btn-block'>My orders</button></div>
+                    </div>
+                }
+
+                <br/>
+
+
                 <h1>Personal Profile</h1>
-
-                {/*<div className="alert alert-danger" role="alert">*/}
-                {/*    Something went wrong!*/}
-                {/*</div>*/}
-
-                {/*<div className="alert alert-success" role="alert">*/}
-                {/*    Update Successfully!*/}
-                {/*</div>*/}
+                <br/>
 
                 <div className="mb-3 row">
                     <label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
@@ -209,5 +223,4 @@ export default class Profile extends React.Component {
             </div>
         )
     }
-
 }
