@@ -7,6 +7,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 
 const Admin = () => {
     const [key, setKey] = useState("admin")
+    const history = useHistory()
         return (
             <div>
                 <h2>Admin</h2>
@@ -14,7 +15,11 @@ const Admin = () => {
                 <Tab.Container id="left-tabs-example" defaultActiveKey="admin">
                     <Row>
                         <Col sm={3}>
-                            <Nav variant="pills" className="flex-column" onSelect={k => setKey(k)}>
+                            <Nav variant="pills" className="flex-column"
+                                 onSelect={k => {
+                                     setKey(k)
+                                     history.push(`/admin/${k}`)
+                            }}>
                                 <Nav.Item>
                                     <Nav.Link eventKey="products">Product Table</Nav.Link>
                                 </Nav.Item>
