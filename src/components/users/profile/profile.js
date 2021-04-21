@@ -28,6 +28,7 @@ export default class Profile extends React.Component {
         }
     }
 
+
     componentDidMount() {
         userService.profile()
             .catch(error => {

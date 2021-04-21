@@ -38,7 +38,8 @@ function App() {
                      exact={true}>
                   <SellerStore/>
               </Route>
-              <Route path="/store/buyer/:buyerId" exact={true}>
+              <Route path="/buyer/:buyerId"
+                     exact={true}>
                   <BuyerStore/>
               </Route>
         </BrowserRouter>

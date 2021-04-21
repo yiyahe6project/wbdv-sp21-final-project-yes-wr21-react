@@ -8,7 +8,7 @@ const BuyerProfile = ({state}) => {
             <div className='mb-3 row'>
                 <h5 className='col-sm-2'>Buyer Info</h5>
                 <div className="col-sm-10">
-                    <Link to={`/store/buyer/${state._id}`}
+                    <Link to={`/buyer/${state._id}`}
                     className="btn btn-success btn-block">
                         Go Shopping
                     </Link>

@@ -10,36 +10,36 @@ const BuyerStore = ({}) => {
 
     const {buyerId} = useParams()
     const [productList, setProductList] = useState([])
-
+    // const [selectedCate, setSelectedCate] = useState("")
     const [buyerInfo, setBuyerInfo] = useState({
          storeName: ''
      })
+    const quantities = []
+    if (productList.length > 0) {
+        for (let i = 0; i < productList.length; i++) {
+            quantities.push(0);
+        }
+    }
 
     useEffect(() => {
         if (buyerId !== "undefined" && typeof buyerId !== "undefined") {
-            userService.profile().then(profile => {
+            userService.profile().catch(error => {
+                alert("Buyer is not logged in!!")
+                this.props.history.push('/')
+            }).then(profile => {
                 setBuyerInfo(profile)
-                productService.findAllProducts().then(products => {
-                    setProductList(products)
-                })
+                productService.findAllProducts()
+                    .then(products => {
+                        setProductList(products)
+                    })
             })
-            // userService.profile().catch(error => {
-            //     alert("Buyer is not logged in!!")
-            //     this.props.history.push('/')
-            // }).then(profile => {
-            //     setBuyerInfo(profile)
-            //     productService.findAllProducts()
-            //         .then(products => {
-            //             setProductList(products)
-            //         })
-            // })
         }
-    })
+    }, [buyerId])
     return (
         <>
             <br/>
             <div>
-                <h1>Welcome Buyer !! {buyerId}</h1>
+                <h1>Welcome Buyer !!</h1>
                 <div className="row">
                     <h2 className="col-6"> Your Total Cost: </h2>
                 </div>
@@ -47,7 +47,8 @@ const BuyerStore = ({}) => {
 
                 <div>
                     <ProductList
-                        productList={productList}/>
+                        productList={productList}
+                        quantities={quantities}/>
                 </div>
 
             </div>

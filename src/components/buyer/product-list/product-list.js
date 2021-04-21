@@ -1,17 +1,19 @@
 import React, {useState} from 'react'
 
-const ProductList = ({productList}) => {
 
-    // const [quantity, setQuantity] = useState(0)
+const ProductList = ({productList, quantities}) => {
 
+    const [clicked, setClick] = useState(false)
+    const [quantity, setQuantity] = useState(0)
     return (
         <>
             <br/>
             <div>
                 <ul className="list-group">
                     {
-                        productList.map((product) => {
+                        productList.map((product, idx) => {
                             const drink = product.drink
+
                             return (
 
                                 <li key={drink._id}
@@ -40,8 +42,17 @@ const ProductList = ({productList}) => {
                                                    min='0'
                                                    max={product.quantity}
                                                    className='form-control'
+                                                   value={quantities[idx]}
+                                                   // value={quantity}
+                                                   onChange={(e) => {
+                                                       let val = parseInt(e.target.value)
+                                                       quantities[idx] = val
+                                                       setQuantity(val)
+                                                   }}
                                                    name="quantity"/>
-                                            <button>
+                                            <button onClick={() =>{
+                                                setClick(true)
+                                            }}>
                                                 Purchase
                                             </button>
                                         </div>
@@ -51,6 +62,8 @@ const ProductList = ({productList}) => {
                         })
                     }
                 </ul>
+                {JSON.stringify(quantities)}
+
             </div>
         </>
     )

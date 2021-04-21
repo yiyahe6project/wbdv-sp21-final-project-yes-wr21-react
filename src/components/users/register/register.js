@@ -27,26 +27,27 @@ export default class Register extends React.Component {
         storeName: ''
     }
 
-    // buyer = {
-    //     names: {
-    //         firstName: '',
-    //         middleName: '',
-    //         lastName: ''
-    //     },
-    //     username: '',
-    //     password: '',
-    //     verifyPassword: '',
-    //     role: '',
-    //     DeliveryAddress: {
-    //         addressLineOne: '',
-    //         addressLineTwo: '',
-    //         city: '',
-    //         state: '',
-    //         postalCode: '',
-    //         country: ''
-    //     },
-    //     recipientName: ''
-    // }
+    buyerState = {
+        names: {
+            firstName: '',
+            middleName: '',
+            lastName: ''
+        },
+        username: '',
+        password: '',
+        verifyPassword: '',
+        role: 'Buyer',
+
+        storageLocation: {
+            addressLineOne: '',
+            addressLineTwo: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: ''
+        },
+        storeName: ''
+    }
 
     handleRegister = (user) => {
         if (this.state.username === '' || this.state.password === '') {
@@ -84,19 +85,18 @@ export default class Register extends React.Component {
     }
 
     // for buyer
-    // updateRecipientName = (name) => {
-    //     this.setState({recipientName: name})
-    // }
-    //
-    //
-    // updateDeliveryAddress = (deliveryAddressUpdate) => {
-    //     console.log(deliveryAddressUpdate)
-    //     const name = Object.keys(deliveryAddressUpdate)[0]
-    //     console.log(deliveryAddressUpdate[name])
-    //     const currentDelivery = this.state.DeliveryAddress
-    //     currentDelivery[name] = deliveryAddressUpdate[name]
-    //     this.setState({DeliveryAddress: currentDelivery})
-    // }
+    updateRecipientName = (name) => {
+        this.setState({recipientName: name})
+    }
+
+    updateDeliveryAddress = (deliveryAddressUpdate) => {
+        console.log(deliveryAddressUpdate)
+        const name = Object.keys(deliveryAddressUpdate)[0]
+        console.log(deliveryAddressUpdate[name])
+        const currentDelivery = this.state.DeliveryAddress
+        currentDelivery[name] = deliveryAddressUpdate[name]
+        this.setState({DeliveryAddress: currentDelivery})
+    }
 
     render() {
         return (
