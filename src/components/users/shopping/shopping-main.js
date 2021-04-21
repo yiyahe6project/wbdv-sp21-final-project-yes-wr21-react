@@ -38,7 +38,7 @@ const ShoppingMain = () => {
         let currItems = shoppingCartCache.items
         const inShoppingCart = currItems.find((existing)=>{
             if (
-            existing.product.drink.idDrink === getProduct.drink.idDrink) {
+            existing.product._id === getProduct._id) {
                 return existing
             }
         })
@@ -68,6 +68,9 @@ const ShoppingMain = () => {
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="store">Store</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="products">Products</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         <Tab.Content>
