@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory, Route} from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import productService from "../../services/products-service";
 // import cocktailService from "../services/cocktail-service"
 
 const ProductTable = () => {
     const products = [{"ingredients" : [ "Baileys irish cream", "Grand Marnier", "Kahlua" ], "idDrink" : "15853", "nameDrink" : "B-52", "category" : "Shot", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg" },
     { "ingredients" : [ "Orange Bitters", "Green Chartreuse", "Gin", "Sweet Vermouth" ], "idDrink" : "17254", "nameDrink" : "Aijou", "category" : "Cocktail", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/rysb3r1513706985.jpg" },
     { "ingredients" : [ "Gin", "Triple sec", "Lemon juice", "Grenadine", "Egg white" ], "idDrink" : "11149", "nameDrink" : "Coxcar", "category" : "Ordinary Drink", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/pwgtpa1504366376.jpg"}]
-    const [sortedProducts, setSortedProducts] = React.useState(products);
+    const [sortedProducts, setSortedProducts] = useState(products);
     const sortedField = "nameDrink";
 
     const sortByName = () => {
@@ -24,8 +25,15 @@ const ProductTable = () => {
         }
     }
 
+    const getAllProducts = () => {
+        if (sortedField) {
+            productService.findAllProducts().then((products) => setSortedProducts(products))
+        }
+    }
+
     useEffect(() => {
-        sortByName();
+        getAllProducts();
+        // sortByName();
     })
 
     return (

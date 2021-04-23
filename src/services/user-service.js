@@ -51,13 +51,20 @@ const findBuyerShoppingCart = (buyerId) =>
     fetch(`${USER_URL}/buyer/${buyerId}/shoppingCart`)
         .then(response => response.json())
 
+const findAllSellers = () =>
+    fetch(`${USER_URL}/users`).then((users) => {
+        users.find(user => user.role == "Seller")
+        return users.json()
+    })
+
 const userService = {
     register,
     profile,
     logout,
     login,
     updateBuyerShoppingCart,
-    findBuyerShoppingCart
+    findBuyerShoppingCart,
+    findAllSellers
 }
 
 export default userService

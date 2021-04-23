@@ -25,6 +25,24 @@ function App() {
                      exact={true}>
                   <Search/>
               </Route>
+              <Route path="/store/:sellerId"
+                     exact={true}>
+                  <SellerStore/>
+              </Route>
+
+              <Route path={["/shopping/byDrink/:idDrink"]}
+                     exact={true}
+                     component={ShoppingMain}>
+              </Route>
+              <Route path="/stores" exact={true}>
+                  <SellerTable/>
+              </Route>
+              <Route path="/products" exact={true}>
+                  <ProductTable/>
+              </Route>
+              {/*<Route path="/">*/}
+
+              {/*</Route>*/}
               <Route path="/details/:id" exact={true}>
                   <Details/>
               </Route>
@@ -40,10 +58,6 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
-              <Route path={["/shopping/byDrink/:idDrink"]}
-                     exact={true}
-                     component={ShoppingMain}>
-              </Route>
               <Route path="/admin"
 
                      exact={true}
@@ -58,11 +72,6 @@ function App() {
               {/*       exact={true}*/}
               {/*       component={SellerTable}>*/}
               {/*</Route>*/}
-
-              <Route path="/store/:sellerId"
-                     exact={true}>
-                  <SellerStore/>
-              </Route>
         </BrowserRouter>
       </div>
   );

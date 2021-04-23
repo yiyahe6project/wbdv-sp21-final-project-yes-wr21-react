@@ -1,8 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory, Route} from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import userService from "../../services/user-service";
 
 const SellerTable = () => {
+
+    const [sellers, setSellers] = useState([])
+
+    const findAllSellers = () =>
+        userService.findAllSellers().then((sellers) => setSellers(sellers))
     return (
         <div>
             <h2>Sellers</h2>
@@ -17,13 +23,22 @@ const SellerTable = () => {
                 </thead>
                 <tbody>
                 <tr>
-                    <tr>
-                        <td colSpan="2">
-                            <Link to="">
-                                sellerA
-                            </Link>
-                        </td>
-                    </tr>
+                    {
+                        sellers.map(seller => {
+                            return (
+                                <Link to="/">
+                                    {JSON.stringify(seller.name)}
+                                </Link>
+                            )
+                        })
+                    }
+                    {/*<tr>*/}
+                    {/*<td colSpan="2">*/}
+                    {/*    <Link to="">*/}
+                    {/*        sellerA*/}
+                    {/*    </Link>*/}
+                    {/*</td>*/}
+                    {/*</tr>*/}
                 </tr>
                 </tbody>
             </Table>
