@@ -6,7 +6,10 @@ const ShoppingByDrink = ({idDrink, updateShoppingCart}) => {
 
     useEffect(()=> {
         productService.findProductsByDrink(idDrink)
-            .then((products) => setProducts(products))
+            .then((products) => {
+                console.log(products)
+                setProducts(products)
+            })
     }, [idDrink])
 
     return (
