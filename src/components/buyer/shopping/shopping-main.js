@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from "react-router-dom";
 import {Col, Nav, Row, Tab, Tabs} from "react-bootstrap";
-import ShoppingByDrinkSearch from "./shopping-by-drink-search";
+import ShoppingByDrinkSearch from "./by-search/shopping-by-drink-search";
 import ShoppingCart from "./shopping-cart";
 import userService from "../../../services/user-service";
 import orderService from "../../../services/orders-service";
+import ShoppingStoreLists from "./by-store/shopping-store-lists";
 
 const ShoppingMain = () => {
     const history = useHistory()
@@ -160,7 +161,7 @@ const ShoppingMain = () => {
                                     idDrink={idDrink}/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="store">
-                                {/*<Sonnet/>*/}
+                                <ShoppingStoreLists/>
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>

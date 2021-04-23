@@ -113,10 +113,10 @@ const SellerStore = ({}) => {
         <>
             <div>
                 <h1>{sellerInfo.storeName}</h1>
-
-                {/*<div className='row'>*/}
-                {/*    <h2 className='col-6'> Total Revenue: </h2>*/}
-                {/*</div>*/}
+                <br/>
+                <div className='row'>
+                    <h2 className='col-6'><i className="fas fa-hand-holding-usd"/> Total Revenue: ${sellerInfo.revenue}</h2>
+                </div>
                 <br/>
 
                 <div className='row'>

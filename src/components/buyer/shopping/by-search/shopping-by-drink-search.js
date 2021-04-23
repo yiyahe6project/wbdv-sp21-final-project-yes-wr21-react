@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import productService from "../../../services/products-service";
-import cocktailService from "../../../services/cocktail-service";
+import productService from "../../../../services/products-service";
+import cocktailService from "../../../../services/cocktail-service";
 import {useHistory} from "react-router-dom";
 
 const ShoppingByDrinkSearch = ({idDrink, handleAddAProductToCart}) => {
