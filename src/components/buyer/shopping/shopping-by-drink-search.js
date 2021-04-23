@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import productService from "../../../services/products-service";
+import cocktailService from "../../../services/cocktail-service";
 
-const ShoppingByDrink = ({idDrink, handleAddAProductToCart}) => {
+const ShoppingByDrinkSearch = ({idDrink, handleAddAProductToCart}) => {
+    const [drinkInfo, setDrinkInfo] = useState({})
     const [products, setProducts] = useState([])
 
     useEffect(()=> {
+        cocktailService.findCocktailById(idDrink).then((drink) =>{
+            console.log(drink.drinks[0])
+            setDrinkInfo(drink.drinks[0])
+                                                       }
+        )
         productService.findProductsByDrink(idDrink)
             .then((products) => {
                 console.log(products)
@@ -13,6 +20,13 @@ const ShoppingByDrink = ({idDrink, handleAddAProductToCart}) => {
     }, [idDrink])
 
     return (
+        <>
+            <h4>Search result for : {drinkInfo.strDrink}</h4>
+            {
+                products.length === 0 &&
+                <h4>Currently Unavailable!
+                </h4>
+            }
         <ul className='list-group'>
             {
                 products.map((product) => {
@@ -54,7 +68,8 @@ const ShoppingByDrink = ({idDrink, handleAddAProductToCart}) => {
                 })
             }
         </ul>
+        </>
     )
 }
 
-export default ShoppingByDrink
+export default ShoppingByDrinkSearch
