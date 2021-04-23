@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import cocktailService from "../services/cocktail-service"
+import Cocktail from "./availbleCocktails";
+
 
 const Search = () => {
     const history = useHistory()
@@ -9,6 +11,7 @@ const Search = () => {
     const [results, setResults] = useState({drinks: []})
     useEffect(() => {
         setSearchName(name)
+
         if (name) {
             findCocktailByName(name)
         }
@@ -25,6 +28,7 @@ const Search = () => {
             <div className="row">
                 <div className="col-9">
                     <input value={searchName}
+                           placeholder="please search by name"
                            onChange={(event) => {
                                setSearchName(event.target.value)
                            }}
@@ -52,6 +56,9 @@ const Search = () => {
                             </li>
                         )
                     })
+                }
+                {
+                    <Cocktail/>
                 }
             </ul>
         </div>

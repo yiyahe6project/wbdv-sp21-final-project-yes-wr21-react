@@ -11,6 +11,7 @@ import BuyerTable from "./components/admin/buyer-table";
 import SellerTable from "./components/admin/seller-table";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
+import BuyerStore from "./components/buyer/buyer-store/buyer-store";
 
 
 function App() {
@@ -57,6 +58,10 @@ function App() {
               <Route path="/store/:sellerId"
                      exact={true}>
                   <SellerStore/>
+              </Route>
+              <Route path="/buyer/:buyerId"
+                     exact={true}>
+                  <BuyerStore/>
               </Route>
         </BrowserRouter>
       </div>

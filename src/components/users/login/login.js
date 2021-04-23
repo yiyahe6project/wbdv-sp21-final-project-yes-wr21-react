@@ -57,9 +57,7 @@ export default class Login extends React.Component {
                         <Link to="/" className="btn btn-danger btn-block"> Cancel </Link>
                         <div className="row">
                             <div className="col-6">
-                                {/*todo:
-                            handle forgot password
-                            */}
+
                                 <Link to="/">Forgot Password</Link>
                             </div>
                             <div className="col-6">

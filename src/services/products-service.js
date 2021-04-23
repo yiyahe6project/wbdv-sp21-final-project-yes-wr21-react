@@ -15,9 +15,15 @@ const createProduct = (product) =>
         }
     }).then((response) => response.json())
 
+const findAllProducts = () =>
+    fetch(`${PRODUCT_URL}/products`, {
+        method: 'GET'
+    }).then(response => response.json()).catch((error) => {console.log(error)})
+
 const productService = {
     findProductsForSeller,
-    createProduct
+    createProduct,
+    findAllProducts
 }
 
 export default productService

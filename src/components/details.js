@@ -67,9 +67,10 @@ const Details = () => {
                     })
                 }
             </ul>
-            {/*{JSON.stringify(drink)}*/}
+            <br/>
+            <h2>A list of Sellers: </h2>
+            <br/>
             </>
-
     )
 }
 
