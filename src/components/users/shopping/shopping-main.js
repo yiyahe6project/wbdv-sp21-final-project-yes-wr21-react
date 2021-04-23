@@ -43,13 +43,18 @@ const ShoppingMain = () => {
                 return existing
             }
         })
+
         if (inShoppingCart) {
+            // if the product is existing, then simply increment the quantity by 1
             pair.quantity = inShoppingCart.quantity + getQuantity
             updateShoppingCart(pair)
         } else {
+            // if not, add it to shoppingCart
             let newItems = [...shoppingCartCache.items, pair]
+            // need update totalPrice
             let addOnPrice = pair.product.price * pair.quantity
             let newPrice = shoppingCartCache.totalPrice + addOnPrice
+            // newShoppingCart
             let newShoppingCart = {totalPrice: newPrice, items: newItems}
             userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
                 .then(status=> setShoppingCartCache(newShoppingCart))
@@ -59,11 +64,14 @@ const ShoppingMain = () => {
     const deleteProductInCart = (pair) => {
         const getProduct = pair.product
         let priceOff = pair.product.price * pair.quantity
+        // get rid of this product's total price
         let newPrice = shoppingCartCache.totalPrice - priceOff
+        // copy shoppingCart
         let newItems = [...shoppingCartCache.items]
         const updatedItems = newItems.filter((existing) => {
             return existing.product._id !== getProduct._id
         })
+        // this will be new shopping cart
         let newShoppingCart = {totalPrice: newPrice, items: updatedItems}
         userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
             .then(()=> {
@@ -75,8 +83,10 @@ const ShoppingMain = () => {
     const updateShoppingCart = (pair) => {
         const getProduct = pair.product
         const getQuantity = pair.quantity
-        console.log(shoppingCartCache)
+        // console.log(shoppingCartCache)
 
+        // copy the shopping cart, so that we don't directly
+        // work on cached shopping cart
         let newItems = [...shoppingCartCache.items]
         const inShoppingCart = newItems.find((existing)=>{
             if (existing.product._id === getProduct._id) {
@@ -84,16 +94,18 @@ const ShoppingMain = () => {
             }
         })
 
+        // calculate the new total price
         let newPrice = shoppingCartCache.totalPrice
         if (getQuantity > inShoppingCart.quantity) {
+            // get more quantity, we need add
             newPrice += pair.product.price * (pair.quantity - inShoppingCart.quantity)
         } else {
+            // get less quantity, we need reduce
             newPrice -= pair.product.price * (inShoppingCart.quantity - pair.quantity)
         }
 
         inShoppingCart.quantity = getQuantity
         let newShoppingCart = {totalPrice: newPrice, items: newItems}
-        // console.log(newShoppingCart)
         userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
             .then(status=> setShoppingCartCache(newShoppingCart))
     }
