@@ -1,29 +1,32 @@
 import React, {useState} from 'react'
 
-const EditableCart = ({pair}) => {
+const EditableCart = ({pair, updateShoppingCart, deleteProductInCart}) => {
     const [editing, setEditing] = useState(false)
+    const [pairCache, setPairCache] = useState(pair)
 
     return (<>
             <li className='list-group-item'>
-                <div className='ml-1 row'>
-                    <div>
-                        {pair.product.drink.nameDrink} by {pair.product.seller.storeName}:
+                <div className='row cart-body'>
+                    <div className='col-7'>
+                        {pairCache.product.drink.nameDrink} by {pairCache.product.seller.storeName}:
                     </div>
                     {
                         editing &&
                         <>
-                            <input className='cart-editor-typing'
-                            type='Number'
-                            value={pair.quantity}/>
-                            <div className='cart-editor-button'>
+                            <input className='col-2 cart-editor-typing'
+                                   type='Number'
+                                   onChange={(e) =>
+                                       setPairCache({...pairCache, quantity: e.target.value})}
+                                   value={pairCache.quantity}/>
+                            <div className='col-3 cart-editor-button'>
                                 <i onClick={() => {
                                     setEditing(false)
-                                    // updateProduct(productCache)
+                                    updateShoppingCart(pairCache)
                                 }}
                                    className="float-right edit-button fa fa-check"/>
                                 <i
                                     onClick={() => {
-                                        // deleteProduct(productCache)
+                                        deleteProductInCart(pairCache)
                                     }}
                                     className="float-right edit-button fa fa-trash mr-1"/>
                             </div>
@@ -31,10 +34,10 @@ const EditableCart = ({pair}) => {
                     }
                     {!editing &&
                      <>
-                         <div className='cart-editor'>
+                         <div className='cart-editor col-2'>
                              {pair.quantity}
                          </div>
-                         <div className='cart-editor-button'>
+                         <div className='cart-editor-button col-3'>
                              <i className='float-right fa fa-cog edit-button'
                                 onClick={() => {
                                     setEditing(true)

@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import './shopping-cart.css'
 import EditableCart from "./editable-cart";
 
-const ShoppingCart = ({shoppingCartCache}) => {
+const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
+                          deleteProductInCart}) => {
     return (
         <>
             <h1>Shopping Cart</h1>
@@ -16,8 +17,10 @@ const ShoppingCart = ({shoppingCartCache}) => {
                 {
                     shoppingCartCache.items.map((pair, index) =>
                                                     <EditableCart
-                                                    key={index}
-                                                    pair={pair}/>)
+                                                        deleteProductInCart={deleteProductInCart}
+                                                        updateShoppingCart={updateShoppingCart}
+                                                        key={index}
+                                                        pair={pair}/>)
                 }
                 {shoppingCartCache.items.length !== 0 &&
                  <div className='float-right'>

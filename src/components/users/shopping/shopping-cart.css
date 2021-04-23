@@ -1,15 +1,15 @@
 .cart-editor {
-    position: absolute;
-    right: 30%;
+    /*position: absolute;*/
+    /*right: 30%;*/
 }
 .cart-editor-button {
-    position: absolute;
-    right: 10%;
+    /*position: absolute;*/
+    /*right: 10%;*/
     cursor: pointer;
 }
 
 .cart-editor-typing {
     width: 50px;
-    position: absolute;
-    right: 30%;
+    /*position: absolute;*/
+    /*right: 30%;*/
 }

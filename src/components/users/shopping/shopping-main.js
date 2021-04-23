@@ -19,41 +19,83 @@ const ShoppingMain = () => {
                 history.push('/')
             })
             .then(profile => {
-                setBuyerId(profile._id)
-                // console.log(profile)
-                userService.findBuyerShoppingCart(profile._id)
-                    .then(response => {
-                        console.log(response)
-                        setShoppingCartCache(response.shoppingCart)
-                    })
+                if (profile) {
+                    setBuyerId(profile._id)
+                    // console.log(profile)
+                    userService.findBuyerShoppingCart(profile._id)
+                        .then(response => {
+                            console.log(response)
+                            setShoppingCartCache(response.shoppingCart)
+                        })
+                } else {
+                    alert("Not logged In!")
+                    history.push('/')
+                }
             })
     }, [idDrink])
+
+    const handleAddAProductToCart = (pair) => {
+        const getProduct = pair.product
+        const getQuantity = pair.quantity
+        let currItems = shoppingCartCache.items
+        const inShoppingCart = currItems.find((existing)=>{
+            if (existing.product._id === getProduct._id) {
+                return existing
+            }
+        })
+        if (inShoppingCart) {
+            pair.quantity = inShoppingCart.quantity + getQuantity
+            updateShoppingCart(pair)
+        } else {
+            let newItems = [...shoppingCartCache.items, pair]
+            let addOnPrice = pair.product.price * pair.quantity
+            let newPrice = shoppingCartCache.totalPrice + addOnPrice
+            let newShoppingCart = {totalPrice: newPrice, items: newItems}
+            userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
+                .then(status=> setShoppingCartCache(newShoppingCart))
+        }
+    }
+
+    const deleteProductInCart = (pair) => {
+        const getProduct = pair.product
+        let priceOff = pair.product.price * pair.quantity
+        let newPrice = shoppingCartCache.totalPrice - priceOff
+        let newItems = [...shoppingCartCache.items]
+        const updatedItems = newItems.filter((existing) => {
+            return existing.product._id !== getProduct._id
+        })
+        let newShoppingCart = {totalPrice: newPrice, items: updatedItems}
+        userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
+            .then(()=> {
+                setShoppingCartCache(newShoppingCart)
+            })
+    }
+
 
     const updateShoppingCart = (pair) => {
         const getProduct = pair.product
         const getQuantity = pair.quantity
         console.log(shoppingCartCache)
-        let addOnPrice = pair.product.price * pair.quantity
-        let newPrice = shoppingCartCache.totalPrice + addOnPrice
-        let currItems = shoppingCartCache.items
-        const inShoppingCart = currItems.find((existing)=>{
-            if (
-            existing.product._id === getProduct._id) {
+
+        let newItems = [...shoppingCartCache.items]
+        const inShoppingCart = newItems.find((existing)=>{
+            if (existing.product._id === getProduct._id) {
                 return existing
             }
         })
-        if (inShoppingCart) {
-            inShoppingCart.quantity += getQuantity
-            let newShoppingCart = {totalPrice: newPrice, items: currItems}
-            // console.log(newShoppingCart)
-            userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
-                .then(status=> setShoppingCartCache(newShoppingCart))
+
+        let newPrice = shoppingCartCache.totalPrice
+        if (getQuantity > inShoppingCart.quantity) {
+            newPrice += pair.product.price * (pair.quantity - inShoppingCart.quantity)
         } else {
-            let newItems = [...shoppingCartCache.items, pair]
-            let newShoppingCart = {totalPrice: newPrice, items: newItems}
-            userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
-                .then(status=> setShoppingCartCache(newShoppingCart))
+            newPrice -= pair.product.price * (inShoppingCart.quantity - pair.quantity)
         }
+
+        inShoppingCart.quantity = getQuantity
+        let newShoppingCart = {totalPrice: newPrice, items: newItems}
+        // console.log(newShoppingCart)
+        userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
+            .then(status=> setShoppingCartCache(newShoppingCart))
     }
 
     return (
@@ -78,7 +120,7 @@ const ShoppingMain = () => {
                                 <br/>
                                 <br/>
                                 <ShoppingByDrink
-                                    updateShoppingCart={updateShoppingCart}
+                                    handleAddAProductToCart={handleAddAProductToCart}
                                     idDrink={idDrink}/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="store">
@@ -88,6 +130,8 @@ const ShoppingMain = () => {
                     </Col>
                     <Col sm={4}>
                         <ShoppingCart
+                            deleteProductInCart={deleteProductInCart}
+                            updateShoppingCart={updateShoppingCart}
                             shoppingCartCache={shoppingCartCache}/>
                             <br/>
                             <button className='float-right btn btn-success'>Pay</button>

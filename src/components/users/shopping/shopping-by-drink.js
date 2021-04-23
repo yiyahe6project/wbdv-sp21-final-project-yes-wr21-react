@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import productService from "../../../services/products-service";
 
-const ShoppingByDrink = ({idDrink, updateShoppingCart}) => {
+const ShoppingByDrink = ({idDrink, handleAddAProductToCart}) => {
     const [products, setProducts] = useState([])
 
     useEffect(()=> {
@@ -36,7 +36,7 @@ const ShoppingByDrink = ({idDrink, updateShoppingCart}) => {
                                 <div className='col-3'>Price: {product.price}</div>
                                 <div className='col-2'>
                                     <button
-                                        onClick={()=> updateShoppingCart({product: product, quantity: 1})}
+                                        onClick={()=> handleAddAProductToCart({product: product, quantity: 1})}
                                         className='float-right btn btn-primary'>
                                         Add
                                     </button>
