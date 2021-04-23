@@ -4,6 +4,7 @@ import {Col, Nav, Row, Tab, Tabs} from "react-bootstrap";
 import ShoppingByDrink from "./shopping-by-drink";
 import ShoppingCart from "./shopping-cart";
 import userService from "../../../services/user-service";
+import orderService from "../../../services/orders-service";
 
 const ShoppingMain = () => {
     const history = useHistory()
@@ -27,9 +28,6 @@ const ShoppingMain = () => {
                             console.log(response)
                             setShoppingCartCache(response.shoppingCart)
                         })
-                } else {
-                    alert("Not logged In!")
-                    history.push('/')
                 }
             })
     }, [idDrink])
@@ -110,6 +108,22 @@ const ShoppingMain = () => {
             .then(status=> setShoppingCartCache(newShoppingCart))
     }
 
+    const payOrder = () => {
+        if (shoppingCartCache.items.length !== 0) {
+            orderService.finishCurrentOrder({_id: buyerId})
+                .then((status) => {
+                    alert("Successful place the order!")
+                    window.location.reload()
+                })
+                .catch((error) => {
+                    alert("Fail to place the order! Some items may not be available!")
+                    window.location.reload()
+                })
+        } else {
+            alert("Shopping cart is empty!")
+        }
+    }
+
     return (
         <div>
             <Tab.Container defaultActiveKey={key}>
@@ -146,7 +160,9 @@ const ShoppingMain = () => {
                             updateShoppingCart={updateShoppingCart}
                             shoppingCartCache={shoppingCartCache}/>
                             <br/>
-                            <button className='float-right btn btn-success'>Pay</button>
+                            <button
+                                onClick={()=> payOrder()}
+                                className='float-right btn btn-success'>Pay</button>
                     </Col>
                 </Row>
             </Tab.Container>
