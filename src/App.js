@@ -11,7 +11,7 @@ import BuyerTable from "./components/admin/buyer-table";
 import SellerTable from "./components/admin/seller-table";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
-
+import ShoppingMain from "./components/users/shopping/shopping-main";
 
 function App() {
   return (
@@ -19,6 +19,16 @@ function App() {
           <BrowserRouter>
               <Route path="/" exact={true}>
                   <Home/>
+              </Route>
+              <Route path={["/shopping/byDrink/:idDrink"]}
+                     exact={true}
+                     component={ShoppingMain}>
+              </Route>
+              <Route path="/products" exact={true}>
+                  <ProductTable/>
+              </Route>
+              <Route path="/stores" exact={true}>
+                  <SellerTable/>
               </Route>
               <Route path={["/search", "/search/:name"]}
                      exact={true}>

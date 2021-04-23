@@ -2,8 +2,29 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerRegister from "./seller-register";
+import AddressRegister from "./address-register";
 
 export default class Register extends React.Component {
+    // state = {
+    //     names: {
+    //         firstName: '',
+    //         middleName: '',
+    //         lastName: ''
+    //     },
+    //     username: '',
+    //     password: '',
+    //     verifyPassword: '',
+    //     role: 'Buyer',
+    //     storageLocation: {
+    //         addressLineOne: '',
+    //         addressLineTwo: '',
+    //         city: '',
+    //         state: '',
+    //         postalCode: '',
+    //         country: ''
+    //     },
+    //     storeName: ''
+    // }
     state = {
         names: {
             firstName: '',
@@ -13,6 +34,14 @@ export default class Register extends React.Component {
         username: '',
         password: '',
         verifyPassword: '',
+        address: {
+            addressLineOne: '',
+            addressLineTwo: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: ''
+        },
         role: 'Buyer',
         storageLocation: {
             addressLineOne: '',
@@ -24,6 +53,7 @@ export default class Register extends React.Component {
         },
         storeName: ''
     }
+
 
     handleRegister = (user) => {
         if (this.state.username === '' || this.state.password === '') {
@@ -49,6 +79,13 @@ export default class Register extends React.Component {
     // for Seller
     updateStoreName = (storeName) => {
         this.setState({storeName: storeName})
+    }
+
+    updateAddress = (addressUpdate) => {
+        const name = Object.keys(addressUpdate)[0]
+        const currentAddress = this.state.address
+        currentAddress[name] = addressUpdate[name]
+        this.setState({address: currentAddress})
     }
 
     updateStorageLocation = (storageLocationUpdate) => {
@@ -178,6 +215,12 @@ export default class Register extends React.Component {
                         updateStoreName={this.updateStoreName}
                         updateStorageLocation={this.updateStorageLocation}/>
                     </>
+                }
+                {
+                    this.state.role === 'Buyer' &&
+                    <AddressRegister
+                        state={this.state}
+                        updateAddress={this.updateAddress}/>
                 }
 
                 <div className="form-group row">
