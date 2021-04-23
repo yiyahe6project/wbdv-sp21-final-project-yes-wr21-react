@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useHistory, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Col, Nav, Row, Tab, Tabs} from "react-bootstrap";
 import ShoppingByDrink from "./shopping-by-drink";
 import ShoppingCart from "./shopping-cart";
@@ -8,12 +8,14 @@ import orderService from "../../../services/orders-service";
 
 const ShoppingMain = () => {
     const history = useHistory()
-    const {idDrink} = useParams()
-    const [key, setKey] = useState('drink');
+    const {shopBy, idDrink} = useParams()
+    const [key, setKey] = useState('');
     const [shoppingCartCache, setShoppingCartCache] = useState({items:[]})
     const [buyerId, setBuyerId] = useState("")
 
     useEffect(()=> {
+        console.log(shopBy)
+        setKey(shopBy)
         userService.profile()
             .catch(error => {
                 alert("Not logged In!")
@@ -126,13 +128,16 @@ const ShoppingMain = () => {
 
     return (
         <div>
-            <Tab.Container defaultActiveKey={key}>
+            <Tab.Container defaultActiveKey={key} activeKey={key}
+            onSelect={(k)=> {setKey(k)
+                history.push(`/shopping/${k}`)}}>
                 <Row>
                     <Col sm={8}>
                         <h1>Shopping Page</h1>
-                        <Nav className='ml-1 flex-row' variant='tabs'>
+                        <Nav className='ml-1 flex-row'
+                             variant='tabs'>
                             <Nav.Item>
-                                <Nav.Link eventKey="drink">Shop by Drinks</Nav.Link>
+                                <Nav.Link eventKey="search">Shop by search</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="store">Store</Nav.Link>
@@ -142,7 +147,7 @@ const ShoppingMain = () => {
                             </Nav.Item>
                         </Nav>
                         <Tab.Content>
-                            <Tab.Pane eventKey="drink">
+                            <Tab.Pane eventKey="search">
                                 <br/>
                                 <br/>
                                 <ShoppingByDrink
