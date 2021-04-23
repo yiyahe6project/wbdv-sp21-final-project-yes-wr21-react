@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import productService from "../../../services/products-service";
 import cocktailService from "../../../services/cocktail-service";
+import {useHistory} from "react-router-dom";
 
 const ShoppingByDrinkSearch = ({idDrink, handleAddAProductToCart}) => {
+    const history = useHistory()
     const [drinkInfo, setDrinkInfo] = useState({})
     const [products, setProducts] = useState([])
 
@@ -21,6 +23,9 @@ const ShoppingByDrinkSearch = ({idDrink, handleAddAProductToCart}) => {
 
     return (
         <>
+            <button
+            onClick={()=> history.push(`/search/${drinkInfo.strDrink}`)}
+                className='btn btn-primary'> <i className='fa fa-search'/> Search again</button>
             <h4>Search result for : {drinkInfo.strDrink}</h4>
             {
                 products.length === 0 &&

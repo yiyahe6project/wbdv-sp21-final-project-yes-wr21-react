@@ -142,7 +142,7 @@ const ShoppingMain = () => {
                         <Nav className='ml-1 flex-row'
                              variant='tabs'>
                             <Nav.Item>
-                                <Nav.Link eventKey="search">Search drink</Nav.Link>
+                                <Nav.Link eventKey="search">Search a drink</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="store">Store</Nav.Link>
