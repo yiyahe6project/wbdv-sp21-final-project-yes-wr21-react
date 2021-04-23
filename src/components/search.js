@@ -62,7 +62,7 @@ const Search = () => {
                                 {
                                     buyerLoggedIn &&
                                     <button
-                                        onClick={()=> history.push(`/shopping/byDrink/${drink.idDrink}`)}
+                                        onClick={()=> history.push(`/shopping/search/${drink.idDrink}`)}
                                         className='float-right btn btn-primary'>Order</button>
                                 }
                             </li>

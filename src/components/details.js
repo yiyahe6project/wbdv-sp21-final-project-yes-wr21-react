@@ -41,7 +41,7 @@ const Details = () => {
 
             <h2>{drink.strDrink}</h2>
             <img className="float-right"
-                 alt={drink.strRink}
+                 alt={drink.strDrink}
                  src={drink.strDrinkThumb}
                  width={700}
                  height={700}/><br/>
