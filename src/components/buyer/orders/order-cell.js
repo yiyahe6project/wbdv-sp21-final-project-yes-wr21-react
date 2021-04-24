@@ -9,8 +9,8 @@ const OrderCell = ({order, num}) => {
                     let getProduct = product.product
                     const parseDate = new Date(order.finishDate).toDateString()
                     return (
-                        <div>
-                            <div key={index} className='row'>
+                        <div key={index}>
+                            <div className='row'>
                                 <div className='col-4 highlight-font'>{getProduct.drink.nameDrink} from {getProduct.seller.storeName}</div>
                                 <div className='col-2'>Quantity: {product.quantity}</div>
                                 <div className='col-2'>Price: {getProduct.price}</div>
