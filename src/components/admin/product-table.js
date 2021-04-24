@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory, Route} from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import productService from "../../services/products-service";
 // import cocktailService from "../services/cocktail-service"
 
 const ProductTable = () => {
-    const products = [{"ingredients" : [ "Baileys irish cream", "Grand Marnier", "Kahlua" ], "idDrink" : "15853", "nameDrink" : "B-52", "category" : "Shot", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg" },
-    { "ingredients" : [ "Orange Bitters", "Green Chartreuse", "Gin", "Sweet Vermouth" ], "idDrink" : "17254", "nameDrink" : "Aijou", "category" : "Cocktail", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/rysb3r1513706985.jpg" },
-    { "ingredients" : [ "Gin", "Triple sec", "Lemon juice", "Grenadine", "Egg white" ], "idDrink" : "11149", "nameDrink" : "Coxcar", "category" : "Ordinary Drink", "alcoholic" : "Alcoholic", "imageURL" : "https://www.thecocktaildb.com/images/media/drink/pwgtpa1504366376.jpg"}]
-    const [sortedProducts, setSortedProducts] = React.useState(products);
+
+    const [sortedProducts, setSortedProducts] = React.useState([]);
     const sortedField = "nameDrink";
 
     const sortByName = () => {
@@ -24,40 +23,93 @@ const ProductTable = () => {
         }
     }
 
+    const getAllProducts = () => {
+
+        productService.findAllProducts().then((products) => {
+            setSortedProducts(products);
+        })
+    }
+
     useEffect(() => {
-        sortByName();
-    })
+        getAllProducts()
+        sortByName()
+    }, [])
 
     return (
         <div>
             <h2>Products</h2>
+            <br/>
 
-            <Table className="table">
-                <thead>
-                <tr>
-                    <th className="h3" colSpan="2">Drink</th>
-                    <th className="h3 d-none d-sm-table-cell">Quantities</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {
-                        sortedProducts.map((product, ndx) =>
+            <ul className="list-group">
+                {
+                    sortedProducts.map((product, index) => {
+                        return(
                             <>
-                                <tr>
-                                    <td colSpan="2">
-                                        <Link to={`/details/${product.idDrink}`}>
-                                            {product.nameDrink}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
+                                <li
+                                    className="list-group-item"
+                                    key={product._id}>
+                                    <div className="row">
+                                        <h4>Product name: </h4>
+                                        <p>{product.drink.nameDrink}</p>
+                                    </div>
+                                    <div className="row">
+                                        <h4>Category: </h4>
+                                        <p>{product.drink.category}</p>
+                                    </div>
+                                    <div className="row">
+                                        <img src={product.drink.imageURL}
+                                             alt={product.drink.nameDrink}
+                                             width={170}
+                                             height={180}/>
+                                        <h5>Quantity: {product.quantity}</h5>
+
+                                        <h5>Price: {product.price}</h5>
+
+                                    </div>
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </li>
                             </>
                         )
-                    }
-                </tbody>
-            </Table>
+                    })
+                }
+            </ul>
+
+            {/*<ul>*/}
+            {/*    {*/}
+            {/*        sortedProducts.map((product, index) =>*/}
+
+            {/*            <div>*/}
+            {/*                <div className="row">*/}
+            {/*                    <h4>Product name: </h4>*/}
+            {/*                    <p>{product.drink.nameDrink}</p>*/}
+            {/*                </div>*/}
+            {/*                <div className="row">*/}
+            {/*                    <h4>Category: </h4>*/}
+            {/*                    <p>{product.drink.category}</p>*/}
+            {/*                </div>*/}
+            {/*                <img*/}
+            {/*                    src={product.drink.imageURL}*/}
+            {/*                    alt={product.drink.nameDrink}*/}
+            {/*                    width={100}*/}
+            {/*                    height={100}*/}
+            {/*                />*/}
+
+            {/*                /!*{JSON.stringify(product)}*!/*/}
+
+            {/*                /!*{product.drink.nameDrink}*!/*/}
+            {/*                /!*{product.quantity}*!/*/}
+            {/*                <br/>*/}
+            {/*                <br/>*/}
+            {/*                <br/>*/}
+            {/*            </div>*/}
+
+            {/*        )*/}
+            {/*    }*/}
+            {/*</ul>*/}
+
         </div>
 
     )
@@ -65,3 +117,4 @@ const ProductTable = () => {
 }
 
 export default ProductTable;
+

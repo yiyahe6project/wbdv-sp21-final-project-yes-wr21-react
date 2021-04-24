@@ -5,6 +5,7 @@ import ShoppingByDrinkSearch from "./shopping-by-drink-search";
 import ShoppingCart from "./shopping-cart";
 import userService from "../../../services/user-service";
 import orderService from "../../../services/orders-service";
+import ProductTable from "../../admin/product-table";
 
 const ShoppingMain = () => {
     const history = useHistory()
@@ -161,6 +162,11 @@ const ShoppingMain = () => {
                             </Tab.Pane>
                             <Tab.Pane eventKey="store">
                                 {/*<Sonnet/>*/}
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="products">
+                                <br/>
+                                <br/>
+                                <ProductTable/>
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>

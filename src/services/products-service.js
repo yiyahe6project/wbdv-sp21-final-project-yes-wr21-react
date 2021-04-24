@@ -34,12 +34,18 @@ const findProductsByDrink = (idDrink) =>
         method: 'GET'
     }).then((response => response.json()))
 
+const findAllProducts = () =>
+    fetch(`${PRODUCT_URL}/products`, {
+        method: 'GET'
+    }).then(products => products.json())
+
 const productService = {
     findProductsForSeller,
     createProduct,
     updateProduct,
     deleteProduct,
-    findProductsByDrink
+    findProductsByDrink,
+    findAllProducts
 }
 
 export default productService
