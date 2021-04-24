@@ -33,6 +33,7 @@ const SellerStore = ({}) => {
                     // console.log(profile.storeName)
                     productService.findProductsForSeller(sellerId)
                         .then(products => {
+                            console.log(products)
                             setProductList(products)
                         })
                 })
@@ -46,7 +47,7 @@ const SellerStore = ({}) => {
                 if (selectedCate !== '') {
                     drinkService.findDrinksByCateForSeller(encodeURIComponent(selectedCate))
                         .then(drinks => {
-                            console.log(drinksByCate)
+                            console.log(drinks)
                             setDrinksByCate(drinks)
                         })
                 }
@@ -55,7 +56,9 @@ const SellerStore = ({}) => {
 
     const handleAddADrink = () => {
         const repeated = productList.find((product) => {
-            if (product.drink === selectedDrink) {
+            console.log(product.drink._id)
+            console.log(selectedCate._id)
+            if (product.drink._id === selectedDrink) {
                 return product
             }
         })
