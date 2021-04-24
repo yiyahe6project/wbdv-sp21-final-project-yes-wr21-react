@@ -35,6 +35,17 @@ const updateUserInfo = (userProfile) =>
     }).then(response => {
         return response.json()
     })
+// for admin
+const updateUserInfoWithWriteAuth = (userProfile) =>
+    fetch(`${USER_URL}/profile/write-auth`, {
+        method: 'PUT',
+        body: JSON.stringify(userProfile),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    })
 
 const logout = () =>
     fetch(`${USER_URL}/logout`, {
@@ -87,7 +98,8 @@ const userService = {
     findUserById,
     findUsersByRole,
     updateUserInfo,
-    getPublicProfile
+    getPublicProfile,
+    updateUserInfoWithWriteAuth
 }
 
 export default userService

@@ -25,25 +25,40 @@ export default class PublicProfile extends React.Component {
     }
 
     componentDidMount() {
+        let authority = this.props.match.params.auth
         let userId = this.props.match.params.userId
-        // TODO: Admin with write authority
-        // const isAdmin = this.props.match.path.includes('admin')
-        // console.log(isAdmin)
         userService.getPublicProfile(userId)
             .then(profile => {
                 if (profile) {
                     this.setState({profile: profile})
+                    if (authority && authority === "write") {
+                        this.setState({canWrite: true})
+                    }
                 }
 
             })
     }
 
+    handleUserUpdate = () => {
+        let userInfo = {
+            userId: this.props.match.params.userId,
+            userProfile: this.state.profile
+        }
 
+        userService.updateUserInfoWithWriteAuth(userInfo)
+            .then((res)=> {
+                alert('Update Successfully!')
+                this.setState({profile: userInfo.userProfile})
+            })
+            .catch(error => {
+                alert('Failed to update')
+            })
+    }
     render() {
 
         return (
             <div className="container">
-                <h1>Public Profile</h1>
+                <h1>Public Profile {this.state.canWrite}</h1>
                 <br/>
 
                 <div className="mb-3 row">
@@ -136,7 +151,7 @@ export default class PublicProfile extends React.Component {
                 {this.state.canWrite &&
                     <>
                         <button
-                            onClick={() => {}}
+                            onClick={() => this.handleUserUpdate()}
                             className="btn btn-success btn-block">
                             Update
                         </button>
