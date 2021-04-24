@@ -1,17 +1,17 @@
 import Search from "./components/search";
 import Details from "./components/details";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route} from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
 import Admin from "./components/admin/admin";
-import ProductTable from "./components/admin/product-table";
-import BuyerTable from "./components/admin/buyer-table";
-import SellerTable from "./components/admin/seller-table";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
-
+import ShoppingMain from "./components/users/shopping/shopping-main";
+import ProductDetails from "./components/admin/products-manager/product-details"
+import ShoppingMain from "./components/buyer/shopping/shopping-main";
+import OrdersList from "./components/buyer/orders/orders-list";
 
 function App() {
   return (
@@ -39,22 +39,37 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
+              <Route path={["/shopping/:shopBy/:idDrink",
+                            "/shopping/:shopBy",
+                            "/shopping"]}
+                     exact={true}
+                     component={ShoppingMain}>
+              </Route>
+              <Route path='/orders'
+                     exact={true}
+                     component={OrdersList}>
+              </Route>
+             
               <Route path={["/admin", "/admin/sellers", "/admin/products", "/admin/buyers"]}
-
                      exact={true}
                      component={Admin}>
               </Route>
-
-              {/*<Route path="/admin/buyers"*/}
+               {/*TODO:add adminId*/}
+              {/*<Route path={["/admin",*/}
+              {/*    "/admin/:adminId",*/}
+              {/*    "/admin/:adminId/sellers",*/}
+              {/*    "/admin/:adminId/products",*/}
+              {/*    "/admin/:adminId/buyers",*/}
+              {/*    ]}*/}
               {/*       exact={true}*/}
-              {/*       component={BuyerTable}>*/}
+              {/*       component={Admin}>*/}
               {/*</Route>*/}
-              {/*<Route path="/admin/sellers"*/}
-              {/*       exact={true}*/}
-              {/*       component={SellerTable}>*/}
-              {/*</Route>*/}
+                <Route path="/admin/products/:drinkName/details"
+                           exact={true}
+                           component={ProductDetails}>
+                </Route>
 
-              <Route path="/store/:sellerId"
+              <Route path={["/store/:sellerId", "/admin/store/:sellerId"]}
                      exact={true}>
                   <SellerStore/>
               </Route>
