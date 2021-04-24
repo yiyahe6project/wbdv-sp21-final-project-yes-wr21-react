@@ -8,7 +8,7 @@ const findDrinksCategories = () =>
 
 const findDrinksByCate = (cate) =>
     fetch(`${DRINK_URL}/drinks/category`, {
-        method: 'POST',
+        method: 'GET',
         body: JSON.stringify(cate),
         headers: {
             'content-type': 'application/json'
@@ -16,9 +16,15 @@ const findDrinksByCate = (cate) =>
     }).then(response => response.json())
         .catch((error) => {console.log(error)})
 
+const findDrinkByName = (drinkName) => {
+    return fetch(`${DRINK_URL}/drink/${drinkName}`)
+        .then(response => response.json())
+}
+
 const drinkService = {
     findDrinksCategories,
-    findDrinksByCate
+    findDrinksByCate,
+    findDrinkByName
 }
 
 export default drinkService

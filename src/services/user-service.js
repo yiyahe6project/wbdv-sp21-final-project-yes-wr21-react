@@ -37,11 +37,35 @@ const login = (user) =>
         return response.json()
     })
 
+
+// For buyer
+const updateBuyerShoppingCart = (buyerId, shoppingCart) =>
+    fetch(`${USER_URL}/buyer/${buyerId}/shoppingCart`, {
+        method: 'POST',
+        body: JSON.stringify(shoppingCart),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+
+const findBuyerShoppingCart = (buyerId) =>
+    fetch(`${USER_URL}/buyer/${buyerId}/shoppingCart`)
+        .then(response => response.json())
+
+// For admin
+const findUserById = (userId) =>
+    fetch(`${USER_URL}/users/${userId}`)
+        .then(response => response.json())
+
+
 const userService = {
     register,
     profile,
     logout,
-    login
+    login,
+    updateBuyerShoppingCart,
+    findBuyerShoppingCart,
+    findUserById
 }
 
 export default userService
