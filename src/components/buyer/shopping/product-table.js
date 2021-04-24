@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory, Route} from "react-router-dom";
-import Table from 'react-bootstrap/Table';
-import productService from "../../services/products-service";
-// import cocktailService from "../services/cocktail-service"
+
+import productService from "../../../services/products-service";
+
 
 const ProductTable = () => {
 
