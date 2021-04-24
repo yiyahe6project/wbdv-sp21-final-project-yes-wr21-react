@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const AddressProfile = ({state}) => {
+
+const AddressProfile = ({state, updateAddress}) => {
     return (
         <>
             <br/>
@@ -16,7 +17,9 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserAddressLineOne"
                            value={state.address.addressLineOne}
-                           readOnly
+
+                           onChange={(e) =>
+                               updateAddress({addressLineOne: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -28,7 +31,8 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserAddressLineTwo"
                            value={state.address.addressLineTwo}
-                           readOnly
+                           onChange={(e) =>
+                               updateAddress({addressLineTwo: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -40,7 +44,8 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserCity"
                            value={state.address.city}
-                           readOnly
+                           onChange={(e) =>
+                               updateAddress({city: e.target.value})}
                            placeholder="Example: Boston"/>
                 </div>
             </div>
@@ -52,7 +57,8 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserState"
                            value={state.address.state}
-                           readOnly
+                           onChange={(e) =>
+                               updateAddress({state: e.target.value})}
                            placeholder="Example: MA"/>
                 </div>
             </div>
@@ -64,7 +70,8 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserPostalCode"
                            value={state.address.postalCode}
-                           readOnly
+                           onChange={(e) =>
+                               updateAddress({postalCode: e.target.value})}
                            placeholder="Example: 02115"/>
                 </div>
             </div>
@@ -76,7 +83,8 @@ const AddressProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserCountry"
                            value={state.address.country}
-                           readOnly
+                           onChange={(e) =>
+                               updateAddress({country: e.target.value})}
                            placeholder="Example: USA"/>
                 </div>
             </div>

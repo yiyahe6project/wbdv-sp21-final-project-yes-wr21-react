@@ -44,7 +44,7 @@ const SellerStore = ({}) => {
             .then((categories) => {
                 setDrinksCategories(categories)
                 if (selectedCate !== '') {
-                    drinkService.findDrinksByCate({category: selectedCate})
+                    drinkService.findDrinksByCateForSeller(encodeURIComponent(selectedCate))
                         .then(drinks => {
                             console.log(drinksByCate)
                             setDrinksByCate(drinks)
@@ -54,17 +54,13 @@ const SellerStore = ({}) => {
     },[sellerId, selectedCate])
 
     const handleAddADrink = () => {
-        const findDrink = drinksByCate.find((drink) => {
-            if (drink.idDrink === selectedDrink) {
-                return drink
-            }
-        })
         const repeated = productList.find((product) => {
-            if (product.drink.idDrink === selectedDrink) {
+            if (product.drink === selectedDrink) {
                 return product
             }
         })
-        if (findDrink) {
+
+        if (selectedDrink !== "") {
             if (quantity === 0 || price === 0) {
                 alert("You sure about price and quantity are correct?")
                 return
@@ -73,7 +69,7 @@ const SellerStore = ({}) => {
                 alert("Cannot add to product, since you have one the same product existing!")
             } else {
                 const newProduct = {
-                    drink: findDrink,
+                    drink: selectedDrink,
                     quantity: quantity.toString(),
                     price: price.toString(),
                     seller: sellerId
@@ -119,9 +115,10 @@ const SellerStore = ({}) => {
             <div>
                 <h1>{sellerInfo.storeName}</h1>
 
-                {/*<div className='row'>*/}
-                {/*    <h2 className='col-6'> Total Revenue: </h2>*/}
-                {/*</div>*/}
+                <br/>
+                <div className='row'>
+                    <h2 className='col-6'><i className="fas fa-hand-holding-usd"/> Total Revenue: ${sellerInfo.revenue}</h2>
+                </div>
                 <br/>
 
                 <div className='row'>
@@ -137,7 +134,7 @@ const SellerStore = ({}) => {
                             }}
                             defaultValue={'none'}
                             className="form-control">
-                            <option value="none" disabled hidden>
+                            <option value="none" disabled>
                                 Select a type
                             </option>
                             {
@@ -156,16 +153,18 @@ const SellerStore = ({}) => {
                             onChange={(e) => {
                                 setSelectedDrink(e.target.value)
                             }}
+                            disabled={selectedCate === ""}
+                            title={"Please select a drink type first!"}
                             defaultValue={'none'}
                             className="form-control">
-                            <option value="none" disabled hidden>
+                            <option value="none" disabled>
                                 Select a drink
                             </option>
                             {
                                 drinksByCate.map((drink, index) => {
                                     return (<option
                                         key={index}
-                                        value={drink.idDrink}>{drink.nameDrink}</option>)
+                                        value={drink._id}>{drink.nameDrink}</option>)
                                 })
                             }
                         </select>

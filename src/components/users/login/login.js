@@ -12,6 +12,9 @@ export default class Login extends React.Component {
         userService.login(user).then(
             currentUser => this.props.history.push('/profile')
         )
+            .catch(error => {
+                alert("username or password is wrong!")
+            })
     }
 
     render() {

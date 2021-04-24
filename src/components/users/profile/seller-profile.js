@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const SellerProfile = ({state}) => {
+const SellerProfile = ({state, updateStorageLocation}) => {
     return (
         <>
             <br/>
@@ -33,7 +33,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="AddressLineOne"
                            value={state.storageLocation.addressLineOne}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({addressLineOne: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -45,7 +46,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="AddressLineTwo"
                            value={state.storageLocation.addressLineTwo}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({addressLineTwo: e.target.value})}
                            placeholder="Example: xxx st"/>
                 </div>
             </div>
@@ -57,7 +59,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="sellerCity"
                            value={state.storageLocation.city}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({city: e.target.value})}
                            placeholder="Example: Boston"/>
                 </div>
             </div>
@@ -69,7 +72,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="sellerState"
                            value={state.storageLocation.state}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({state: e.target.value})}
                            placeholder="Example: MA"/>
                 </div>
             </div>
@@ -81,7 +85,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="sellerPostalCode"
                            value={state.storageLocation.postalCode}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({postalCode: e.target.value})}
                            placeholder="Example: 02115"/>
                 </div>
             </div>
@@ -93,7 +98,8 @@ const SellerProfile = ({state}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="sellerCountry"
                            value={state.storageLocation.country}
-                           readOnly
+                           onChange={(e) =>
+                               updateStorageLocation({country: e.target.value})}
                            placeholder="Example: USA"/>
                 </div>
             </div>

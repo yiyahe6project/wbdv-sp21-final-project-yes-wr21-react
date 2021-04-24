@@ -7,12 +7,14 @@ const findDrinksCategories = () =>
         .catch((error) => {console.log(error)})
 
 const findDrinksByCate = (cate) =>
-    fetch(`${DRINK_URL}/drinks/category`, {
-        method: 'GET',
-        body: JSON.stringify(cate),
-        headers: {
-            'content-type': 'application/json'
-        }
+    fetch(`${DRINK_URL}/drinks/categories/${cate}`, {
+        method: 'GET'
+    }).then(response => response.json())
+        .catch((error) => {console.log(error)})
+
+const findDrinksByCateForSeller = (cate) =>
+    fetch(`${DRINK_URL}/drinks/categories/${cate}/Seller`, {
+        method: 'GET'
     }).then(response => response.json())
         .catch((error) => {console.log(error)})
 
@@ -24,7 +26,8 @@ const findDrinkByName = (drinkName) => {
 const drinkService = {
     findDrinksCategories,
     findDrinksByCate,
-    findDrinkByName
+    findDrinkByName,
+    findDrinksByCateForSeller
 }
 
 export default drinkService

@@ -39,6 +39,16 @@ const findProductsByDrink = (idDrink) =>
         method: 'GET'
     }).then((response => response.json()))
 
+const findAllStores = () =>
+    fetch(`${PRODUCT_URL}/stores`, {
+        method: 'GET'
+    }).then((response) => response.json())
+
+const findAllProducts = () =>
+    fetch(`${PRODUCT_URL}/products`, {
+        method: 'GET'
+    }).then(products => products.json())
+
 
 const productService = {
     findAllProducts,
@@ -46,7 +56,9 @@ const productService = {
     createProduct,
     updateProduct,
     deleteProduct,
-    findProductsByDrink
+    findProductsByDrink,
+    findAllStores,
+    findAllProducts
 }
 
 export default productService

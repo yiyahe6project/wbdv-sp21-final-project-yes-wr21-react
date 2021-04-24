@@ -19,6 +19,18 @@ const profile = () =>
         return response.json()
     })
 
+const updateUserInfo = (userProfile) =>
+    fetch(`${USER_URL}/profile`, {
+        method: 'PUT',
+        credentials: "include",
+        body: JSON.stringify(userProfile),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    })
+
 const logout = () =>
     fetch(`${USER_URL}/logout`, {
         method: 'POST',
@@ -56,7 +68,6 @@ const findUserById = (userId) =>
     fetch(`${USER_URL}/users/${userId}`)
         .then(response => response.json())
 
-
 const userService = {
     register,
     profile,
@@ -64,7 +75,8 @@ const userService = {
     login,
     updateBuyerShoppingCart,
     findBuyerShoppingCart,
-    findUserById
+    findUserById,
+    updateUserInfo
 }
 
 export default userService

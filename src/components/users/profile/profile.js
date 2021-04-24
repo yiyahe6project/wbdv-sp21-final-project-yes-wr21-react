@@ -6,6 +6,7 @@ import AddressProfile from "./address-profile";
 
 export default class Profile extends React.Component {
     state = {
+        userId: '',
         profile: {
             names: {
                 firstName: '',
@@ -43,9 +44,11 @@ export default class Profile extends React.Component {
                 this.props.history.push('/')
             })
             .then(profile => {
-                this.setState({profile: profile})
-                console.log(profile)
-                console.log(this.state.profile.names.firstName)
+                if (profile) {
+                    this.setState({userId: profile._id, profile: profile})
+                }
+                // console.log(profile)
+                // console.log(this.state.profile.names.firstName)
             })
     }
 
@@ -53,6 +56,37 @@ export default class Profile extends React.Component {
         userService.logout().then(status => {
             this.props.history.push('/')
         })
+
+    updateStorageLocation = (storageLocationUpdate) => {
+        const name = Object.keys(storageLocationUpdate)[0]
+        const currentStorage = this.state.profile.storageLocation
+        currentStorage[name] = storageLocationUpdate[name]
+        this.setState({storageLocation: currentStorage})
+    }
+
+    updateAddress = (addressUpdate) => {
+        const name = Object.keys(addressUpdate)[0]
+        const currentAddress = this.state.profile.address
+        currentAddress[name] = addressUpdate[name]
+        this.setState({address: currentAddress})
+    }
+
+    handleUserUpdate = () => {
+        let userInfo = {
+            userId: this.state.userId,
+            userProfile: this.state.profile
+        }
+
+        userService.updateUserInfo(userInfo)
+            .then((res)=> {
+                alert('Update Successfully!')
+                this.setState({profile: userInfo.userProfile})
+            })
+            .catch(error => {
+                alert('Failed to update')
+            })
+    }
+
 
 
     render() {
@@ -68,11 +102,17 @@ export default class Profile extends React.Component {
                                 className='btn btn-success btn-block'>Search drinks</button>
                         </div>
                         <div className='col-3'>
-                            <button className='btn btn-success btn-block'>Browse products</button></div>
+                            <button
+                            onClick={()=> this.props.history.push('/shopping/store')}
+                                className='btn btn-success btn-block'>Browse products</button></div>
                         <div className='col-3'>
-                            <button className='btn btn-success btn-block'>Browse stores</button></div>
+                            <button
+                                onClick={()=> this.props.history.push('/shopping/products')}
+                                className='btn btn-success btn-block'>Browse stores</button></div>
                         <div className='col-3'>
-                            <button className='btn btn-success btn-block'>My orders</button></div>
+                            <button
+                                onClick={()=> this.props.history.push('/orders')}
+                                className='btn btn-success btn-block'>My orders</button></div>
                     </div>
                 }
 
@@ -109,20 +149,6 @@ export default class Profile extends React.Component {
                 </div>
 
                 <div className="mb-3 row">
-                    <label htmlFor="verify_password" className="col-sm-2 col-form-label">
-                        Verify
-                    </label>
-                    <div className="col-sm-10">
-                        <input className="form-control"
-                               id="verify_password"
-                               type="password"
-                               readOnly
-                               value={this.state.profile.password}
-                               placeholder="Example: abc123!"/>
-                    </div>
-                </div>
-
-                <div className="mb-3 row">
                     <label htmlFor="firstName" className="col-sm-2 col-form-label">
                         First Name
                     </label>
@@ -130,7 +156,11 @@ export default class Profile extends React.Component {
                         <input type="tel"
                                className="form-control"
                                id="firstName"
-                               readOnly
+                               onChange={(e)=>{
+                                   const curName = this.state.profile.names
+                                   curName.firstName = e.target.value
+                                   this.setState({names : curName})
+                               }}
                                value={this.state.profile.names.firstName}
                         />
                     </div>
@@ -144,7 +174,11 @@ export default class Profile extends React.Component {
                         <input type="tel"
                                className="form-control"
                                id="middleName"
-                               readOnly
+                               onChange={(e)=>{
+                                   const curName = this.state.profile.names
+                                   curName.middleName = e.target.value
+                                   this.setState({names : curName})
+                               }}
                                value={this.state.profile.names.middleName}
                         />
                     </div>
@@ -159,7 +193,11 @@ export default class Profile extends React.Component {
                         <input type="tel"
                                className="form-control"
                                id="lastName"
-                               readOnly
+                               onChange={(e)=>{
+                                   const curName = this.state.profile.names
+                                   curName.lastName = e.target.value
+                                   this.setState({names : curName})
+                               }}
                                value={this.state.profile.names.lastName}
                         />
                     </div>
@@ -186,6 +224,7 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Seller" &&
                     <>
                         <SellerProfile
+                            updateStorageLocation={this.updateStorageLocation()}
                             state={this.state.profile}
                         />
                     </>
@@ -195,6 +234,7 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Buyer" &&
                     <>
                         <AddressProfile
+                            updateAddress={this.updateAddress}
                             state={this.state.profile}/>
                     </>
                 }
@@ -202,9 +242,11 @@ export default class Profile extends React.Component {
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"/>
                     <div className="col-sm-10">
-                        <Link to="/Search" className="btn btn-success btn-block">
+                        <button
+                            onClick={()=>this.handleUserUpdate()}
+                            className="btn btn-success btn-block">
                             Update
-                        </Link>
+                        </button>
                         <button
                             className="btn btn-danger btn-block"
                             onClick={()=>this.handleLogout()}>
