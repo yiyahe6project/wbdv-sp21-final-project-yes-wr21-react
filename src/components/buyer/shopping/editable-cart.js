@@ -19,6 +19,7 @@ const EditableCart = ({pair, updateShoppingCart, deleteProductInCart}) => {
                                    onChange={(e) =>{
                                        if (e.target.value < 0) {
                                            alert("Quantity cannot be negative!")
+                                           e.target.value = pairCache.quantity
                                            setEditing(false)
                                        } else {
                                            setPairCache({...pairCache, quantity: e.target.value})

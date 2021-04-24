@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {alignPropType} from "react-bootstrap/DropdownMenu";
 
 const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
     const [productCache, setProductCache] = useState(product)
@@ -43,8 +44,13 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                                    min="0"
                                    onChange={(e)=>
                                    {
-                                       setProductCache({...productCache,
-                                                           quantity: e.target.value})
+                                       if (e.target.value < 0) {
+                                           alert("Cannot set quantity to negative or undefined!")
+                                           setEditing(false)
+                                       } else {
+                                           setProductCache({...productCache,
+                                                               quantity: e.target.value})
+                                       }
                                    }}
                                    className="form-control mb-3"/>
                             </label>
@@ -57,8 +63,13 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                                    min="0"
                                    onChange={(e)=>
                                    {
-                                       setProductCache({...productCache,
-                                                           price: e.target.value})
+                                       if (e.target.value < 0) {
+                                           alert("Cannot set price to negative")
+                                           setEditing(false)
+                                       } else {
+                                           setProductCache({...productCache,
+                                                               price: e.target.value})
+                                       }
                                    }}
                                    className="form-control mb-3"/>
                             </label>
