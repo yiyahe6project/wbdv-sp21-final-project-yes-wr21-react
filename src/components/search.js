@@ -1,17 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import cocktailService from "../services/cocktail-service"
+import userService from "../services/user-service";
 
 const Search = () => {
     const history = useHistory()
     const {name} = useParams()
     const [searchName, setSearchName] = useState("")
     const [results, setResults] = useState({drinks: []})
+    const [buyerLoggedIn, setBuyerLoggedIn] = useState(false)
     useEffect(() => {
         setSearchName(name)
         if (name) {
             findCocktailByName(name)
         }
+        userService.profile()
+            .then((user) => {
+                if (user.role === "Buyer") {
+                    setBuyerLoggedIn(true)
+                }
+
+            })
     }, [name])
     const findCocktailByName = (name) => {
         cocktailService.findCocktailByName(name)
@@ -49,6 +58,13 @@ const Search = () => {
                                 <Link to={`/details/${drink.idDrink}`}>
                                     {drink.strDrink}
                                 </Link>
+
+                                {
+                                    buyerLoggedIn &&
+                                    <button
+                                        onClick={()=> history.push(`/shopping/search/${drink.idDrink}`)}
+                                        className='float-right btn btn-primary'>Order</button>
+                                }
                             </li>
                         )
                     })

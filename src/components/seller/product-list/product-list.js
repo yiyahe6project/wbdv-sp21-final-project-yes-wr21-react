@@ -1,6 +1,7 @@
 import React from 'react'
+import EditableProduct from "../editable-product/editable-product";
 
-const ProductList = ({productList}) => {
+const ProductList = ({productList, updateProduct, deleteProduct}) => {
     return (
         <ul className='list-group'>
             {
@@ -9,27 +10,11 @@ const ProductList = ({productList}) => {
                     return (
                         <li key={drink._id}
                             className='list-group-item'>
-                            <div className='row'>
-                                <h4>Product name:</h4>
-                                <h4 className='ml-3'>{drink.nameDrink}</h4>
-                            </div>
-                            <div className='row'>
-                                <div className='col-6'>
-                                    <img width={200}
-                                         height={200}
-                                         src={drink.imageURL}
-                                         alt={drink.nameDrink}/>
-                                </div>
-                                <div className='col-2'>
-                                    Quantity: {product.quantity}
-                                </div>
-                                <div className='col-2'>
-                                    Price: {product.price}
-                                </div>
-                                <div className='col-2'>
-                                    <i className='float-right fa fa-cog edit-button fa-2x'/>
-                                </div>
-                            </div>
+                            <EditableProduct
+                                drink={drink}
+                                updateProduct={updateProduct}
+                                deleteProduct={deleteProduct}
+                                product={product}/>
                         </li>
                     )
                 })
