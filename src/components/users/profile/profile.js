@@ -224,7 +224,7 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Seller" &&
                     <>
                         <SellerProfile
-                            updateStorageLocation={this.updateStorageLocation()}
+                            updateStorageLocation={this.updateStorageLocation}
                             state={this.state.profile}
                         />
                     </>
@@ -243,13 +243,13 @@ export default class Profile extends React.Component {
                     <label className="col-sm-2 col-form-label"/>
                     <div className="col-sm-10">
                         <button
-                            onClick={()=>this.handleUserUpdate()}
+                            onClick={()=>this.handleUserUpdate}
                             className="btn btn-success btn-block">
                             Update
                         </button>
                         <button
                             className="btn btn-danger btn-block"
-                            onClick={()=>this.handleLogout()}>
+                            onClick={()=>this.handleLogout}>
                             Log out
                         </button>
                     </div>

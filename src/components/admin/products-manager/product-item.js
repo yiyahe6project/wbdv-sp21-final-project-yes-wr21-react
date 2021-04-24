@@ -9,20 +9,12 @@ const ProductItem = (
         updateProduct,
     }) => {
     const [productCache, setProductCache] = useState(product)
-    const [seller, setSeller] = useState(null)
     const [editing, setEditing] = useState(false)
-
-    useEffect(() => {
-        userService.findUserById(product.seller)
-            .then(user => {
-                setSeller(user.username)
-            })
-    }, [])
 
     return (
             <tr>
                 <td colSpan="2">
-                    {seller}
+                    {product.seller.username}
                 </td>
                 <td>
                     { !editing &&

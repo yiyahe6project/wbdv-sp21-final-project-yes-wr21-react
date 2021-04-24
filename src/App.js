@@ -8,7 +8,6 @@ import Profile from "./components/users/profile/profile";
 import Admin from "./components/admin/admin";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
-import ShoppingMain from "./components/users/shopping/shopping-main";
 import ProductDetails from "./components/admin/products-manager/product-details"
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
 import OrdersList from "./components/buyer/orders/orders-list";
