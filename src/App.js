@@ -54,21 +54,15 @@ function App() {
                      exact={true}
                      component={OrdersList}>
               </Route>
-             
-              <Route path={["/admin", "/admin/sellers", "/admin/products", "/admin/buyers"]}
+              <Route path={[
+                  "/admin/:adminId",
+                  "/admin/:adminId/sellers",
+                  "/admin/:adminId/products",
+                  "/admin/:adminId/buyers",
+                  ]}
                      exact={true}
                      component={Admin}>
               </Route>
-               {/*TODO:add adminId*/}
-              {/*<Route path={["/admin",*/}
-              {/*    "/admin/:adminId",*/}
-              {/*    "/admin/:adminId/sellers",*/}
-              {/*    "/admin/:adminId/products",*/}
-              {/*    "/admin/:adminId/buyers",*/}
-              {/*    ]}*/}
-              {/*       exact={true}*/}
-              {/*       component={Admin}>*/}
-              {/*</Route>*/}
                 <Route path="/admin/products/:drinkName/details"
                            exact={true}
                            component={ProductDetails}>
