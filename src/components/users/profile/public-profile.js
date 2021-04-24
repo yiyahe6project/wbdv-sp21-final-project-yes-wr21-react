@@ -69,6 +69,7 @@ export default class PublicProfile extends React.Component {
                                className="form-control"
                                id="username"
                                autoComplete="off"
+                               placeholder="abc"
                                value={this.state.profile.username}/>
                     </div>
                 </div>
@@ -88,6 +89,7 @@ export default class PublicProfile extends React.Component {
                                    curName.firstName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Wenhao"
                                value={this.state.profile.names.firstName}
                         />
                     </div>
@@ -107,6 +109,7 @@ export default class PublicProfile extends React.Component {
                                    curName.middleName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="W"
                                value={this.state.profile.names.middleName}
                         />
                     </div>
@@ -127,6 +130,7 @@ export default class PublicProfile extends React.Component {
                                    curName.lastName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Ge"
                                value={this.state.profile.names.lastName}
                         />
                     </div>

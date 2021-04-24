@@ -144,6 +144,7 @@ export default class Profile extends React.Component {
                                className="form-control"
                                id="username"
                                autoComplete="off"
+                               placeholder="username"
                                value={this.state.profile.username}/>
                     </div>
                 </div>
@@ -175,6 +176,7 @@ export default class Profile extends React.Component {
                                    curName.firstName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Gavin"
                                value={this.state.profile.names.firstName}
                         />
                     </div>
@@ -193,6 +195,7 @@ export default class Profile extends React.Component {
                                    curName.middleName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Gavin"
                                value={this.state.profile.names.middleName}
                         />
                     </div>
@@ -212,6 +215,7 @@ export default class Profile extends React.Component {
                                    curName.lastName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Austin"
                                value={this.state.profile.names.lastName}
                         />
                     </div>
