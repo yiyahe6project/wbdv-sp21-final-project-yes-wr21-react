@@ -183,7 +183,7 @@ const SellerStore = ({}) => {
                                name="quantity"/>
                     </div>
                     <div className='col-4'>
-                        <label htmlFor="quantity"> Price: </label>
+                        <label htmlFor="price"> Price: </label>
                         <input type="number"
                                className='form-control'
                                id="price"
