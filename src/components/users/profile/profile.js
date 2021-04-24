@@ -44,9 +44,11 @@ export default class Profile extends React.Component {
                 this.props.history.push('/')
             })
             .then(profile => {
-                this.setState({userId: profile._id, profile: profile})
-                console.log(profile)
-                console.log(this.state.profile.names.firstName)
+                if (profile) {
+                    this.setState({userId: profile._id, profile: profile})
+                }
+                // console.log(profile)
+                // console.log(this.state.profile.names.firstName)
             })
     }
 
