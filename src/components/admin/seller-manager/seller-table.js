@@ -23,8 +23,6 @@ const SellerTable = () => {
                 <thead>
                 </thead>
                 <tbody>
-
-
                 {
                     listOfSellers.map(seller =>
                         <tr>

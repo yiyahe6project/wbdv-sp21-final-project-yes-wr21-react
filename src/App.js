@@ -49,7 +49,8 @@ function App() {
                      exact={true}
                      component={ShoppingMain}>
               </Route>
-              <Route path='/orders'
+              <Route path={['/orders',
+                            '/admin/buyers/:buyer_id/orders']}
                      exact={true}
                      component={OrdersList}>
               </Route>
