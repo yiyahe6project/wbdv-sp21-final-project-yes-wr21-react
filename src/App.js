@@ -39,7 +39,9 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
-              <Route path="/profile/:userId"
+              <Route path={["/profile/:userId",
+                            "/profile/authority/:auth/:userId",
+              ]}
                      exact={true}
                      component={PublicProfile}>
               </Route>
@@ -49,25 +51,20 @@ function App() {
                      exact={true}
                      component={ShoppingMain}>
               </Route>
-              <Route path='/orders'
+              <Route path={['/orders',
+                            '/admin/buyers/:buyer_id/orders']}
                      exact={true}
                      component={OrdersList}>
               </Route>
-             
-              <Route path={["/admin", "/admin/sellers", "/admin/products", "/admin/buyers"]}
+              <Route path={[
+                  "/admin/:adminId",
+                  "/admin/:adminId/sellers",
+                  "/admin/:adminId/products",
+                  "/admin/:adminId/buyers",
+                  ]}
                      exact={true}
                      component={Admin}>
               </Route>
-               {/*TODO:add adminId*/}
-              {/*<Route path={["/admin",*/}
-              {/*    "/admin/:adminId",*/}
-              {/*    "/admin/:adminId/sellers",*/}
-              {/*    "/admin/:adminId/products",*/}
-              {/*    "/admin/:adminId/buyers",*/}
-              {/*    ]}*/}
-              {/*       exact={true}*/}
-              {/*       component={Admin}>*/}
-              {/*</Route>*/}
                 <Route path="/admin/products/:drinkName/details"
                            exact={true}
                            component={ProductDetails}>
