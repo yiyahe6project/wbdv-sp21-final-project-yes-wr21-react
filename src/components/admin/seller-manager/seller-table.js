@@ -8,14 +8,17 @@ import Button from '@material-ui/core/Button';
 
 const SellerTable = () => {
     const [listOfSellers, setListOfSellers] = useState([])
-
+    const {adminId} = useParams()
+    const [authority, setAuthority] = useState("write") // assume all admin can write
     useEffect(() => {
         userService.findUsersByRole("Seller")
             .then(sellers => {
-                // console.log(JSON.stringify(users))
                 setListOfSellers(sellers)
             })
+
     }, [])
+
+
     return (
         <div>
             <h2>Sellers </h2>
@@ -27,7 +30,9 @@ const SellerTable = () => {
                     listOfSellers.map(seller =>
                         <tr>
                             <td>
-                                <Link to={`/profile/${seller._id}`}>
+                                {authority}
+
+                                <Link to={`/profile/authority/${authority}/${seller._id}`}>
                                    <h5>{seller.username}</h5>
                                 </Link>
                             </td>

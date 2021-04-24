@@ -5,6 +5,7 @@ import userService from "../../../services/user-service";
 
 const BuyerTable = () => {
     const [listOfBuyers, setListOfBuyers] = useState([])
+    const [authority, setAuthority] = useState("write") // assume all admin can write
 
     useEffect(() => {
         userService.findUsersByRole("Buyer")
@@ -24,7 +25,7 @@ const BuyerTable = () => {
                     listOfBuyers.map(buyer =>
                     <tr>
                         <td>
-                            <Link to={`/profile/${buyer._id}`}>
+                            <Link to={`/profile/authority/${authority}/${buyer._id}`}>
                                 <h5>{buyer.username}</h5>
                             </Link>
                         </td>

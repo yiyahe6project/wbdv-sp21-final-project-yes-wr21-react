@@ -39,7 +39,9 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
-              <Route path="/profile/:userId"
+              <Route path={["/profile/:userId",
+                            "/profile/authority/:auth/:userId",
+              ]}
                      exact={true}
                      component={PublicProfile}>
               </Route>

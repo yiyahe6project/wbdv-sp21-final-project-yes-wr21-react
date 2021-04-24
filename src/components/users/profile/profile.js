@@ -48,10 +48,6 @@ export default class Profile extends React.Component {
                 if (profile) {
                     this.setState({userId: profile._id, profile: profile})
                 }
-                console.log(this.state.userId)
-
-                // console.log(profile)
-                // console.log(this.state.profile.names.firstName)
             })
     }
 

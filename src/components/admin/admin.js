@@ -6,7 +6,6 @@ import SellerTable from "./seller-manager/seller-table";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 
 const Admin = () => {
-    // const {tableType} = useParams()
     const [key, setKey] = useState("products")
     const adminId = useParams()
     const history = useHistory()
@@ -60,6 +59,5 @@ const Admin = () => {
         )
 
 }
-// render(<Admin />);
 
 export default Admin;
