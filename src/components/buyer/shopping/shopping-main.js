@@ -5,7 +5,8 @@ import ShoppingByDrinkSearch from "./shopping-by-drink-search";
 import ShoppingCart from "./shopping-cart";
 import userService from "../../../services/user-service";
 import orderService from "../../../services/orders-service";
-import ProductTable from "../../admin/product-table";
+// import ProductTable from "../../admin/product-table";
+import ProductTable from "./product-table";
 
 const ShoppingMain = () => {
     const history = useHistory()
