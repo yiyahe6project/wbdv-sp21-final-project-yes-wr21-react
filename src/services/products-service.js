@@ -1,4 +1,9 @@
 const PRODUCT_URL = process.env.REACT_APP_API_URL
+const findAllProducts = () =>
+    fetch(`${PRODUCT_URL}/products`, {
+        method: 'GET'
+    }).then(response => response.json())
+        .catch((error) => {console.log(error)})
 
 const findProductsForSeller = (sellerId) =>
     fetch(`${PRODUCT_URL}/products/${sellerId}`, {
@@ -34,7 +39,9 @@ const findProductsByDrink = (idDrink) =>
         method: 'GET'
     }).then((response => response.json()))
 
+
 const productService = {
+    findAllProducts,
     findProductsForSeller,
     createProduct,
     updateProduct,
