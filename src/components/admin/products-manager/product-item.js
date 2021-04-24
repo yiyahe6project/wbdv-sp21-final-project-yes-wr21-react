@@ -34,7 +34,8 @@ const ProductItem = (
                                            quantity: e.target.value
                                        })
                                    }}
-                                   className="form-control"/>
+                                   className="form-control"
+                                   placeholder="please input product quantity"/>
                         </>
                     }
                 </td>
@@ -55,7 +56,8 @@ const ProductItem = (
                                        price: e.target.value
                                    })
                                }}
-                               className="form-control"/>
+                               className="form-control"
+                               placeholder="please determine product price "/>
                     }
                 </td>
                 <td>

@@ -47,7 +47,17 @@ const OrdersList = ({}) => {
     return (
         <>
             {!fromAdmin &&
-                <h1>My orders</h1>
+             <div>
+                 <h1>My orders</h1>
+                 <button
+                     className="btn btn-primary"
+                     onClick={() => {
+                         userService.logout()
+                         history.push('/')
+                     }
+                     }>Log out</button>
+             </div>
+
             }
             {fromAdmin &&
                 <h1>{buyer.username} orders</h1>

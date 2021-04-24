@@ -37,7 +37,8 @@ const Search = () => {
                            onChange={(event) => {
                                setSearchName(event.target.value)
                            }}
-                           className="form-control"/>
+                           className="form-control"
+                    placeholder="please search cocktail name"/>
                 </div>
                 <div className="col-3">
                     <button
