@@ -7,18 +7,14 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import userService from "../../services/user-service";
 
 const Admin = () => {
-    // const {adminId} = useParams()
+    // const {tableType} = useParams()
     const [key, setKey] = useState("products")
     const history = useHistory()
-    // useEffect(() => {
-    //     userService.profile()
-    //         .catch(error => {
-    //             alert("Not logged in as a Admin!")
-    //             history.push('/')
-    //         })
-    //     }, []
-    // )
-        return (
+    useEffect(() => {
+        history.push(`/admin/${key}`)
+    }, [])
+
+    return (
             <div>
                 <h2>Admin</h2>
 

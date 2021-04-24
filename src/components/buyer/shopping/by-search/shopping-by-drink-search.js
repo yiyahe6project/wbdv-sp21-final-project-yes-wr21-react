@@ -12,13 +12,13 @@ const ShoppingByDrinkSearch = ({idDrink, handleAddAProductToCart}) => {
     useEffect(() => {
         if (idDrink !== '' && idDrink !== undefined) {
             cocktailService.findCocktailById(idDrink).then((drink) => {
-                                                               console.log(drink.drinks[0])
+                                                               // console.log(drink.drinks[0])
                                                                setDrinkInfo(drink.drinks[0])
                                                            }
             )
             productService.findProductsByDrink(idDrink)
                 .then((products) => {
-                    console.log(products)
+                    // console.log(products)
                     setProducts(products)
                 })
         }
