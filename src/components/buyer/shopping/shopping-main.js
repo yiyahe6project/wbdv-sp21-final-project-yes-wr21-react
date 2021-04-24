@@ -83,6 +83,9 @@ const ShoppingMain = () => {
 
     const updateShoppingCart = (pair) => {
         const getProduct = pair.product
+        if (pair.quantity === '') {
+            pair.quantity = 0
+        }
         const getQuantity = parseInt(pair.quantity)
         // console.log(shoppingCartCache)
 
