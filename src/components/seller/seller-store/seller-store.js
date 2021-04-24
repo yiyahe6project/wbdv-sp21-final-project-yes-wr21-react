@@ -33,7 +33,7 @@ const SellerStore = ({}) => {
                     // console.log(profile.storeName)
                     productService.findProductsForSeller(sellerId)
                         .then(products => {
-                            console.log(products)
+                            // console.log(products)
                             setProductList(products)
                         })
                 })
@@ -47,7 +47,7 @@ const SellerStore = ({}) => {
                 if (selectedCate !== '') {
                     drinkService.findDrinksByCateForSeller(encodeURIComponent(selectedCate))
                         .then(drinks => {
-                            console.log(drinks)
+                            // console.log(drinks)
                             setDrinksByCate(drinks)
                         })
                 }
