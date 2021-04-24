@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
+import PublicProfile from "./components/users/profile/public-profile";
 import Admin from "./components/admin/admin";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
@@ -37,6 +38,10 @@ function App() {
               <Route path="/profile"
                      exact={true}
                      component={Profile}>
+              </Route>
+              <Route path="/profile/:userId"
+                     exact={true}
+                     component={PublicProfile}>
               </Route>
               <Route path={["/shopping/:shopBy/:idDrink",
                             "/shopping/:shopBy",
