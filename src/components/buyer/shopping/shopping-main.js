@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useHistory, useParams} from "react-router-dom";
+import {Link, Route, useHistory, useParams} from "react-router-dom";
 import {Col, Nav, Row, Tab, Tabs} from "react-bootstrap";
 import ShoppingByDrinkSearch from "./by-search/shopping-by-drink-search";
 import ShoppingCart from "./shopping-cart";
 import userService from "../../../services/user-service";
 import orderService from "../../../services/orders-service";
 import ShoppingStoreLists from "./by-store/shopping-store-lists";
+import productService from "../../../services/products-service";
+import ShoppingByAllProducts from "./all-products/all-products";
 
 const ShoppingMain = () => {
     const history = useHistory()
@@ -16,6 +18,7 @@ const ShoppingMain = () => {
 
     useEffect(()=> {
         setKey(shopBy)
+        // history.push(`/shopping/${shopBy}`)
         userService.profile()
             .catch(error => {
                 alert("Not logged In!")
@@ -32,7 +35,7 @@ const ShoppingMain = () => {
                         })
                 }
             })
-    }, [idDrink])
+    }, [shopBy])
 
     const handleAddAProductToCart = (pair) => {
         const getProduct = pair.product
@@ -128,10 +131,13 @@ const ShoppingMain = () => {
 
     return (
         <div>
-            <Tab.Container defaultActiveKey={key} activeKey={key}
+            <Tab.Container defaultActiveKey={key}
+                           activeKey={key}
             onSelect={(k)=> {
                 if (k === 'search') {
                     history.push('/search')
+                } else if (k === 'orders') {
+                    history.push('/orders')
                 } else {
                     setKey(k)
                     history.push(`/shopping/${k}`)
@@ -139,7 +145,13 @@ const ShoppingMain = () => {
             }}>
                 <Row>
                     <Col sm={8}>
-                        <h1>Shopping Page</h1>
+                        <div className='edit-button'
+                            onClick={()=> history.push('/')}>
+                            <i className='fas fa-home'/>
+                            Back to home
+                        </div>
+                           <h1>Shopping Page</h1>
+                        <br/>
                         <Nav className='ml-1 flex-row'
                              variant='tabs'>
                             <Nav.Item>
@@ -151,17 +163,31 @@ const ShoppingMain = () => {
                             <Nav.Item>
                                 <Nav.Link eventKey="products">All products</Nav.Link>
                             </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="orders">Orders</Nav.Link>
+                            </Nav.Item>
                         </Nav>
                         <Tab.Content>
                             <Tab.Pane eventKey="search">
                                 <br/>
                                 <br/>
+                                <Route path={`/shopping/search/:idDrink`} exact={true}>
                                 <ShoppingByDrinkSearch
                                     handleAddAProductToCart={handleAddAProductToCart}
                                     idDrink={idDrink}/>
+                                </Route>
                             </Tab.Pane>
                             <Tab.Pane eventKey="store">
-                                <ShoppingStoreLists/>
+                                <Route path={[`/shopping/store`]} exact={true}>
+                                    <ShoppingStoreLists
+                                        handleAddAProductToCart={handleAddAProductToCart}/>
+                                </Route>
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="products">
+                                <Route path={[`/shopping/products`]} exact={true}>
+                                    <ShoppingByAllProducts
+                                        handleAddAProductToCart={handleAddAProductToCart}/>
+                                </Route>
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>

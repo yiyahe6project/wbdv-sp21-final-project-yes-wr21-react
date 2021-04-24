@@ -12,6 +12,7 @@ import SellerTable from "./components/admin/seller-table";
 import React from "react";
 import SellerStore from "./components/seller/seller-store/seller-store";
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
+import OrdersList from "./components/buyer/orders/orders-list";
 
 
 function App() {
@@ -41,9 +42,14 @@ function App() {
                      component={Profile}>
               </Route>
               <Route path={["/shopping/:shopBy/:idDrink",
-                            "/shopping/:shopBy"]}
+                            "/shopping/:shopBy",
+                            "/shopping"]}
                      exact={true}
                      component={ShoppingMain}>
+              </Route>
+              <Route path='/orders'
+                     exact={true}
+                     component={OrdersList}>
               </Route>
               <Route path="/admin"
 
