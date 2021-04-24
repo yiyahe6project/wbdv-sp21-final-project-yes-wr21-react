@@ -86,18 +86,21 @@ const SellerStore = ({}) => {
     }
 
     const updateProduct = (updatedProduct) => {
-        productService.updateProduct(updatedProduct._id, updatedProduct)
-            .then((res) => {
-                // console.log(actualProduct)
-                let updatedProducts = productList.map(product => {
-                    if (product._id === updatedProduct._id) {
-                        return updatedProduct
-                    } else {
-                        return product
-                    }
+        if (updatedProduct.quantity === '' || updatedProduct.price === '') {
+            deleteProduct(updatedProduct)
+        } else {
+            productService.updateProduct(updatedProduct._id, updatedProduct)
+                .then((res) => {
+                    let updatedProducts = productList.map(product => {
+                        if (product._id === updatedProduct._id) {
+                            return updatedProduct
+                        } else {
+                            return product
+                        }
+                    })
+                    setProductList(updatedProducts)
                 })
-                setProductList(updatedProducts)
-            })
+        }
     }
 
     const deleteProduct = (deletedProduct) => {
@@ -183,7 +186,7 @@ const SellerStore = ({}) => {
                                name="quantity"/>
                     </div>
                     <div className='col-4'>
-                        <label htmlFor="quantity"> Price: </label>
+                        <label htmlFor="price"> Price: </label>
                         <input type="number"
                                className='form-control'
                                id="price"

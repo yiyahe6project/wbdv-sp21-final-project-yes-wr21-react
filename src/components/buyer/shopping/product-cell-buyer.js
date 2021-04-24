@@ -17,7 +17,7 @@ const ProductCellBuyer = ({product, handleAddAProductToCart}) => {
                     </div>
                 </div>
                 <div className='col-3'>Quantity: {product.quantity}</div>
-                <div className='col-3'>Price: {product.price}</div>
+                <div className='col-3'>Price: ${product.price}</div>
                 <div className='col-2'>
                     {
                         product.quantity === 0 &&

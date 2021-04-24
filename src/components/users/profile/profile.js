@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerProfile from "./seller-profile";
 import AddressProfile from "./address-profile";
+import Admin from "../../admin/admin";
 
 export default class Profile extends React.Component {
     state = {
@@ -47,8 +48,6 @@ export default class Profile extends React.Component {
                 if (profile) {
                     this.setState({userId: profile._id, profile: profile})
                 }
-                // console.log(profile)
-                // console.log(this.state.profile.names.firstName)
             })
     }
 
@@ -117,7 +116,22 @@ export default class Profile extends React.Component {
                 }
 
                 <br/>
-
+                {
+                    this.state.profile.role === "Admin" &&
+                    <>
+                        <div className='mb-3 row'>
+                            <h4 className='col-sm-3'>Admin Manager</h4>
+                            <div className="col-sm-9">
+                                <Link
+                                    to={`/admin/${this.state.userId}`}
+                                    className="btn btn-success btn-block"
+                                >
+                                    My Dashboard </Link>
+                            </div>
+                        </div>
+                    </>
+                }
+                <br/>
 
                 <h1>Personal Profile</h1>
                 <br/>
@@ -224,7 +238,7 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Seller" &&
                     <>
                         <SellerProfile
-                            updateStorageLocation={this.updateStorageLocation()}
+                            updateStorageLocation={this.updateStorageLocation}
                             state={this.state.profile}
                         />
                     </>

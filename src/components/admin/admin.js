@@ -4,21 +4,16 @@ import ProductsInstock from "./products-manager/products-instock";
 import BuyerTable from "./buyer-manager/buyer-table";
 import SellerTable from "./seller-manager/seller-table";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
-import userService from "../../services/user-service";
 
 const Admin = () => {
-    // const {adminId} = useParams()
     const [key, setKey] = useState("products")
+    const adminId = useParams()
     const history = useHistory()
-    // useEffect(() => {
-    //     userService.profile()
-    //         .catch(error => {
-    //             alert("Not logged in as a Admin!")
-    //             history.push('/')
-    //         })
-    //     }, []
-    // )
-        return (
+    useEffect(() => {
+        history.push(`/admin/${adminId}/${key}`)
+    }, [])
+
+    return (
             <div>
                 <h2>Admin</h2>
 
@@ -28,9 +23,7 @@ const Admin = () => {
                             <Nav variant="pills" className="flex-column"
                                  onSelect={k => {
                                      setKey(k)
-                                     history.push(`/admin/${k}`)
-
-                                     // history.push(`/admin/${adminId}/${k}`)
+                                     history.push(`/admin/${adminId}/${k}`)
                             }}>
                                 <Nav.Item>
                                     <Nav.Link eventKey="products">Product Table</Nav.Link>
@@ -66,6 +59,5 @@ const Admin = () => {
         )
 
 }
-// render(<Admin />);
 
 export default Admin;

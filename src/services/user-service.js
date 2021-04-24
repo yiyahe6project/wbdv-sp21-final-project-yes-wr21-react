@@ -18,11 +18,27 @@ const profile = () =>
     }).then(response => {
         return response.json()
     })
+const getPublicProfile = (userId) =>
+    fetch(`${USER_URL}/profile/${userId}`)
+        .then(response => {
+        return response.json()
+    })
 
 const updateUserInfo = (userProfile) =>
     fetch(`${USER_URL}/profile`, {
         method: 'PUT',
         credentials: "include",
+        body: JSON.stringify(userProfile),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    })
+// for admin
+const updateUserInfoWithWriteAuth = (userProfile) =>
+    fetch(`${USER_URL}/profile/write-auth`, {
+        method: 'PUT',
         body: JSON.stringify(userProfile),
         headers: {
             'content-type': 'application/json'
@@ -64,6 +80,10 @@ const findBuyerShoppingCart = (buyerId) =>
         .then(response => response.json())
 
 // For admin
+const findUsersByRole = (role) =>
+    fetch(`${USER_URL}/users/role/${role}`)
+        .then(response => response.json())
+
 const findUserById = (userId) =>
     fetch(`${USER_URL}/users/${userId}`)
         .then(response => response.json())
@@ -76,7 +96,10 @@ const userService = {
     updateBuyerShoppingCart,
     findBuyerShoppingCart,
     findUserById,
-    updateUserInfo
+    findUsersByRole,
+    updateUserInfo,
+    getPublicProfile,
+    updateUserInfoWithWriteAuth
 }
 
 export default userService

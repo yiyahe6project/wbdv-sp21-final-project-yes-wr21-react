@@ -7,18 +7,26 @@ const EditableCart = ({pair, updateShoppingCart, deleteProductInCart}) => {
     return (<>
             <li className='list-group-item'>
                 <div className='row cart-body'>
-                    <div className='col-7'>
+                    <div className='col-6'>
                         {pairCache.product.drink.nameDrink} by {pairCache.product.seller.storeName}:
                     </div>
                     {
                         editing &&
                         <>
-                            <input className='col-2 cart-editor-typing'
+                            <input className='col-4 cart-editor-typing'
                                    type='Number'
-                                   onChange={(e) =>
-                                       setPairCache({...pairCache, quantity: e.target.value})}
+                                   min={0}
+                                   onChange={(e) =>{
+                                       if (e.target.value < 0) {
+                                           alert("Quantity cannot be negative!")
+                                           e.target.value = pairCache.quantity
+                                       } else {
+                                           setPairCache({...pairCache, quantity: e.target.value})
+                                       }
+                                   }
+                                   }
                                    value={pairCache.quantity}/>
-                            <div className='col-3 cart-editor-button'>
+                            <div className='col-2 cart-editor-button'>
                                 <i onClick={() => {
                                     setEditing(false)
                                     updateShoppingCart(pairCache)
@@ -34,7 +42,7 @@ const EditableCart = ({pair, updateShoppingCart, deleteProductInCart}) => {
                     }
                     {!editing &&
                      <>
-                         <div className='cart-editor col-2'>
+                         <div className='cart-editor col-3'>
                              {pair.quantity}
                          </div>
                          <div className='cart-editor-button col-3'>
