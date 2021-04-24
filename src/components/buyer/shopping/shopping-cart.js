@@ -13,13 +13,24 @@ const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
                     Empty shopping cart!
                 </div>
             }
+            {
+                shoppingCartCache.items.length !== 0 &&
+                <div className='row'>
+                    <div className='col-6'>
+                        product:
+                    </div>
+                    <div className='col-3'>
+                        Quantity:
+                    </div>
+                </div>
+            }
             <ul className='list-group'>
                 {
-                    shoppingCartCache.items.map((pair, index) =>
+                    shoppingCartCache.items.map((pair) =>
                                                     <EditableCart
                                                         deleteProductInCart={deleteProductInCart}
                                                         updateShoppingCart={updateShoppingCart}
-                                                        key={index}
+                                                        key={pair.product._id}
                                                         pair={pair}/>)
                 }
                 {shoppingCartCache.items.length !== 0 &&

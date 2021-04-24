@@ -27,10 +27,8 @@ const ShoppingMain = () => {
             .then(profile => {
                 if (profile) {
                     setBuyerId(profile._id)
-                    // console.log(profile)
                     userService.findBuyerShoppingCart(profile._id)
                         .then(response => {
-                            console.log(response)
                             setShoppingCartCache(response.shoppingCart)
                         })
                 }
@@ -85,13 +83,13 @@ const ShoppingMain = () => {
 
     const updateShoppingCart = (pair) => {
         const getProduct = pair.product
-        const getQuantity = pair.quantity
+        const getQuantity = parseInt(pair.quantity)
         // console.log(shoppingCartCache)
 
         // copy the shopping cart, so that we don't directly
         // work on cached shopping cart
         let newItems = [...shoppingCartCache.items]
-        const inShoppingCart = newItems.find((existing)=>{
+        const inShoppingCart = newItems.find((existing) => {
             if (existing.product._id === getProduct._id) {
                 return existing
             }
@@ -107,8 +105,16 @@ const ShoppingMain = () => {
             newPrice -= pair.product.price * (inShoppingCart.quantity - pair.quantity)
         }
 
-        inShoppingCart.quantity = getQuantity
-        let newShoppingCart = {totalPrice: newPrice, items: newItems}
+        let newShoppingCart
+        if (getQuantity === 0) {
+            const updatedItems = newItems.filter((existing) => {
+                return existing.product._id !== getProduct._id
+            })
+            newShoppingCart = {totalPrice: newPrice, items: updatedItems}
+        } else {
+            inShoppingCart.quantity = getQuantity
+            newShoppingCart = {totalPrice: newPrice, items: newItems}
+        }
         userService.updateBuyerShoppingCart(buyerId, newShoppingCart)
             .then(status=> setShoppingCartCache(newShoppingCart))
     }
