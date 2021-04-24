@@ -68,7 +68,9 @@ export default class Profile extends React.Component {
                                 className='btn btn-success btn-block'>Search drinks</button>
                         </div>
                         <div className='col-3'>
-                            <button className='btn btn-success btn-block'>Browse products</button></div>
+                            <button
+                                onClick={() => this.props.history.push('/products')}
+                                className='btn btn-success btn-block'>Browse products</button></div>
                         <div className='col-3'>
                             <button className='btn btn-success btn-block'>Browse stores</button></div>
                         <div className='col-3'>

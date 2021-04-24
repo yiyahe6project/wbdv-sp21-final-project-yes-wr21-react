@@ -37,7 +37,7 @@ const ProductTable = () => {
 
     return (
         <div>
-            <h2>Products</h2>
+            <h2>All Products</h2>
             <br/>
 
             <ul className="list-group">

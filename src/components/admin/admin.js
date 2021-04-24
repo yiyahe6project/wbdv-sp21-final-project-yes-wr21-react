@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory, Route, BrowserRouter} from "react-router-dom";
-import ProductTable from "./product-table";
+// import ProductTable from "./product-table";
+import ProductTable from "../buyer/shopping/product-table";
 import BuyerTable from "./buyer-table";
 import SellerTable from "./seller-table";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';

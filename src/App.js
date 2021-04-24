@@ -6,7 +6,7 @@ import Login from "./components/users/login/login";
 import Register from "./components/users/register/register";
 import Profile from "./components/users/profile/profile";
 import Admin from "./components/admin/admin";
-import ProductTable from "./components/admin/product-table";
+import ProductTable from "./components/buyer/shopping/product-table";
 import BuyerTable from "./components/admin/buyer-table";
 import SellerTable from "./components/admin/seller-table";
 import React from "react";
@@ -25,6 +25,10 @@ function App() {
                      exact={true}>
                   <Search/>
               </Route>
+              <Route path="/products">
+                  <ProductTable/>
+              </Route>
+
               <Route path="/details/:id" exact={true}>
                   <Details/>
               </Route>
