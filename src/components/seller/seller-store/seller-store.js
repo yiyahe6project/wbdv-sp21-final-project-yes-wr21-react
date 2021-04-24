@@ -59,6 +59,7 @@ const SellerStore = ({}) => {
                 return product
             }
         })
+
         if (selectedDrink !== "") {
             if (quantity === 0 || price === 0) {
                 alert("You sure about price and quantity are correct?")
@@ -113,6 +114,7 @@ const SellerStore = ({}) => {
         <>
             <div>
                 <h1>{sellerInfo.storeName}</h1>
+
                 <br/>
                 <div className='row'>
                     <h2 className='col-6'><i className="fas fa-hand-holding-usd"/> Total Revenue: ${sellerInfo.revenue}</h2>

@@ -63,6 +63,11 @@ const findBuyerShoppingCart = (buyerId) =>
     fetch(`${USER_URL}/buyer/${buyerId}/shoppingCart`)
         .then(response => response.json())
 
+// For admin
+const findUserById = (userId) =>
+    fetch(`${USER_URL}/users/${userId}`)
+        .then(response => response.json())
+
 const userService = {
     register,
     profile,
@@ -70,6 +75,7 @@ const userService = {
     login,
     updateBuyerShoppingCart,
     findBuyerShoppingCart,
+    findUserById,
     updateUserInfo
 }
 

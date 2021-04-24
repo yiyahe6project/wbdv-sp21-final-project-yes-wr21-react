@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+
 const AddressProfile = ({state, updateAddress}) => {
     return (
         <>
@@ -16,6 +17,7 @@ const AddressProfile = ({state, updateAddress}) => {
                     <input className="form-control wbdv-field wbdv-username"
                            id="UserAddressLineOne"
                            value={state.address.addressLineOne}
+
                            onChange={(e) =>
                                updateAddress({addressLineOne: e.target.value})}
                            placeholder="Example: xxx st"/>

@@ -18,9 +18,15 @@ const findDrinksByCateForSeller = (cate) =>
     }).then(response => response.json())
         .catch((error) => {console.log(error)})
 
+const findDrinkByName = (drinkName) => {
+    return fetch(`${DRINK_URL}/drink/${drinkName}`)
+        .then(response => response.json())
+}
+
 const drinkService = {
     findDrinksCategories,
     findDrinksByCate,
+    findDrinkByName,
     findDrinksByCateForSeller
 }
 
