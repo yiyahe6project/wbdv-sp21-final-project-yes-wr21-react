@@ -18,6 +18,11 @@ const profile = () =>
     }).then(response => {
         return response.json()
     })
+const getPublicProfile = (userId) =>
+    fetch(`${USER_URL}/profile/${userId}`)
+        .then(response => {
+        return response.json()
+    })
 
 const updateUserInfo = (userProfile) =>
     fetch(`${USER_URL}/profile`, {
@@ -81,7 +86,8 @@ const userService = {
     findBuyerShoppingCart,
     findUserById,
     findUsersByRole,
-    updateUserInfo
+    updateUserInfo,
+    getPublicProfile
 }
 
 export default userService

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 const SellerTable = () => {
     const [listOfSellers, setListOfSellers] = useState([])
+
     useEffect(() => {
         userService.findUsersByRole("Seller")
             .then(sellers => {
@@ -23,11 +24,12 @@ const SellerTable = () => {
                 </thead>
                 <tbody>
 
+
                 {
                     listOfSellers.map(seller =>
                         <tr>
                             <td>
-                                <Link to="">
+                                <Link to={`/profile/${seller._id}`}>
                                    <h5>{seller.username}</h5>
                                 </Link>
                             </td>
