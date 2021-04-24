@@ -56,8 +56,6 @@ const SellerStore = ({}) => {
 
     const handleAddADrink = () => {
         const repeated = productList.find((product) => {
-            console.log(product.drink._id)
-            console.log(selectedCate._id)
             if (product.drink._id === selectedDrink) {
                 return product
             }
