@@ -35,7 +35,7 @@ const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
                 }
                 {shoppingCartCache.items.length !== 0 &&
                  <div className='float-right'>
-                     total: {shoppingCartCache.totalPrice}
+                     total: ${shoppingCartCache.totalPrice}
                  </div>
                 }
             </ul>

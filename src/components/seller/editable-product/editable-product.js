@@ -23,7 +23,7 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                         Quantity: {product.quantity}
                     </div>
                     <div className='col-3'>
-                    Price: {product.price}
+                    Price: ${product.price}
                     </div>
                     <div className='col-2'>
                     <i className='float-right fa fa-cog edit-button fa-2x'
