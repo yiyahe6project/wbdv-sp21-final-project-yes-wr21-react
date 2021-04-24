@@ -36,6 +36,7 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                     editing &&
                     <>
                         <div className='col-3'>
+                            <label>
                             Quantity:
                             <input value={productCache.quantity}
                                    type='number'
@@ -46,8 +47,10 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                                                            quantity: e.target.value})
                                    }}
                                    className="form-control mb-3"/>
+                            </label>
                         </div>
                         <div className='col-3'>
+                            <label>
                             Price:
                             <input value={productCache.price}
                                    type='number'
@@ -58,6 +61,7 @@ const EditableProduct = ({drink, product, updateProduct, deleteProduct}) => {
                                                            price: e.target.value})
                                    }}
                                    className="form-control mb-3"/>
+                            </label>
                         </div>
                         <div className='col-2 up-del-buttons'>
                             <i onClick={() => {
