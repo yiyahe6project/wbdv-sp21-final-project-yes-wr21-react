@@ -44,14 +44,9 @@ const findAllStores = () =>
         method: 'GET'
     }).then((response) => response.json())
 
-const findAllProducts = () =>
-    fetch(`${PRODUCT_URL}/products`, {
-        method: 'GET'
-    }).then(products => products.json())
 
 
 const productService = {
-    findAllProducts,
     findProductsForSeller,
     createProduct,
     updateProduct,
