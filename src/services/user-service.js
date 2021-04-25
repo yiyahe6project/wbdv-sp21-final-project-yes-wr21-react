@@ -88,6 +88,11 @@ const findUserById = (userId) =>
     fetch(`${USER_URL}/users/${userId}`)
         .then(response => response.json())
 
+const findAllUsers = () =>
+    fetch(`${USER_URL}/users`, {
+        method: 'GET'
+    }).then(users => users.json())
+
 const userService = {
     register,
     profile,
@@ -99,7 +104,8 @@ const userService = {
     findUsersByRole,
     updateUserInfo,
     getPublicProfile,
-    updateUserInfoWithWriteAuth
+    updateUserInfoWithWriteAuth,
+    findAllUsers
 }
 
 export default userService

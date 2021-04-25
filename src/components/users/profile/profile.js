@@ -42,7 +42,8 @@ export default class Profile extends React.Component {
         userService.profile()
             .catch(error => {
                 alert("Not logged In!")
-                this.props.history.push('/')
+                this.props.history.push('/otherProfile')
+                // this.props.history.push('/')
             })
             .then(profile => {
                 if (profile) {

@@ -48,6 +48,7 @@ const OrdersList = ({}) => {
         <>
             {!fromAdmin &&
              <div>
+                 <br/>
                  <h1>My orders</h1>
                  <button
                      className="btn btn-primary"
@@ -74,14 +75,17 @@ const OrdersList = ({}) => {
             {
                 ordersCache.length !== 0 &&
                 <>
-                    {
-                        ordersCache.map((order, index) =>
-                                            <OrderCell
-                                                num={index+1}
-                                                key={order._id}
-                                                order={order}/>
-                        )
-                    }
+                    <div className="container-md">
+                        {
+                            ordersCache.map((order, index) =>
+                                                <OrderCell
+                                                    num={index+1}
+                                                    key={order._id}
+                                                    order={order}/>
+                            )
+                        }
+                    </div>
+
                 </>
             }
         </>

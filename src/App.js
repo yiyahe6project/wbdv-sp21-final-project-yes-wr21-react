@@ -12,6 +12,7 @@ import SellerStore from "./components/seller/seller-store/seller-store";
 import ProductDetails from "./components/admin/products-manager/product-details"
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
 import OrdersList from "./components/buyer/orders/orders-list";
+import otherProfile from "./components/users/profile/otherProfile";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
               <Route path="/profile"
                      exact={true}
                      component={Profile}>
+              </Route>
+              <Route path="/otherProfile"
+                     exact={true}
+                     component={otherProfile}>
               </Route>
               <Route path={["/profile/:userId",
                             "/profile/authority/:auth/:userId",
