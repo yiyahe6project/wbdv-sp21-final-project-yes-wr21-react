@@ -42,7 +42,12 @@ const Search = () => {
                 <div className="col-3">
                     <button
                         onClick={() => {
-                            history.push(`/search/${searchName}`)
+                            if (results && results.drinks) {
+                                history.push(`/search/${searchName}`)
+                            } else {
+                                history.push(`/search`)
+                                alert("Currently Unavailable!")
+                            }
                         }}
                         className="btn btn-primary btn-block">
                         Search
