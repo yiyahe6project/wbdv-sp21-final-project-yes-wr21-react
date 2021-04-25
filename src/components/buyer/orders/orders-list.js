@@ -51,7 +51,7 @@ const OrdersList = ({}) => {
                  <br/>
                  <h1>My orders</h1>
                  <button
-                     className="btn btn-primary"
+                     className="btn btn-danger"
                      onClick={() => {
                          userService.logout()
                          history.push('/')
