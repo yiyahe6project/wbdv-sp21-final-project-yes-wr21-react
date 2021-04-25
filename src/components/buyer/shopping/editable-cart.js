@@ -5,6 +5,7 @@ const EditableCart = ({pair, updateShoppingCart, deleteProductInCart}) => {
     const [pairCache, setPairCache] = useState(pair)
 
     return (<>
+
             <li className='list-group-item'>
                 <div className='row cart-body'>
                     <div className='col-6'>

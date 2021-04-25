@@ -90,6 +90,7 @@ export default class Profile extends React.Component {
 
     render() {
         return (
+            <nav class="navbar-light navbar-expand-lg bg-info">
             <div className="container">
                 <br/>
                 {
@@ -281,6 +282,7 @@ export default class Profile extends React.Component {
                     </div>
                 </div>
             </div>
+            </nav>
         )
     }
 }

@@ -61,7 +61,7 @@ const ShoppingMain = () => {
             <Tab.Container defaultActiveKey={key}>
                 <Row>
                     <Col sm={8}>
-                        <h1>Shopping Page</h1>
+                        <h1 className="text-primary">Welcome to Shopping Page</h1>
                         <Nav className='ml-1 flex-row' variant='tabs'>
                             <Nav.Item>
                                 <Nav.Link eventKey="drink">Shop by Drinks</Nav.Link>

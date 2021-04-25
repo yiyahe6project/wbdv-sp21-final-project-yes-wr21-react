@@ -2,7 +2,7 @@ import React from 'react'
 
 const OrderCell = ({order, num}) => {
     return (
-        <li className='list-group-item'>
+        <li className='list-group-item bg-warning'>
             Order {num}
             {
                 order.products.map((product, index) => {

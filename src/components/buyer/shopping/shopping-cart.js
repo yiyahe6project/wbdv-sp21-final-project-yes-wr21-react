@@ -6,7 +6,7 @@ const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
                           deleteProductInCart}) => {
     return (
         <>
-            <h1>Shopping Cart</h1>
+            <h1 className="text-primary">Shopping Cart</h1>
             {
                 shoppingCartCache.items.length === 0 &&
                 <div>
@@ -19,9 +19,11 @@ const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
                     <div className='col-6'>
                         product:
                     </div>
+
                     <div className='col-3'>
                         Quantity:
                     </div>
+                    <br/>
                 </div>
             }
             <ul className='list-group'>
