@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import Search from "./search";
 import userService from "../services/user-service";
 import "./Home.css"
+
 const Home = () => {
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
@@ -30,7 +31,6 @@ const Home = () => {
                                className="btn btn-danger" >Logout</a>
                         </>}
                     </div>
-
                 </div>
             </nav>
 
