@@ -12,6 +12,7 @@ import SellerStore from "./components/seller/seller-store/seller-store";
 import ProductDetails from "./components/admin/products-manager/product-details"
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
 import OrdersList from "./components/buyer/orders/orders-list";
+import otherProfile from "./components/users/profile/otherProfile";
 
 function App() {
   return (
@@ -39,7 +40,13 @@ function App() {
                      exact={true}
                      component={Profile}>
               </Route>
-              <Route path="/profile/:userId"
+              <Route path="/otherProfile"
+                     exact={true}
+                     component={otherProfile}>
+              </Route>
+              <Route path={["/profile/:userId",
+                            "/profile/authority/:auth/:userId",
+              ]}
                      exact={true}
                      component={PublicProfile}>
               </Route>
@@ -49,25 +56,20 @@ function App() {
                      exact={true}
                      component={ShoppingMain}>
               </Route>
-              <Route path='/orders'
+              <Route path={['/orders',
+                            '/admin/buyers/:buyer_id/orders']}
                      exact={true}
                      component={OrdersList}>
               </Route>
-             
-              <Route path={["/admin", "/admin/sellers", "/admin/products", "/admin/buyers"]}
+              <Route path={[
+                  "/admin/:adminId",
+                  "/admin/:adminId/sellers",
+                  "/admin/:adminId/products",
+                  "/admin/:adminId/buyers",
+                  ]}
                      exact={true}
                      component={Admin}>
               </Route>
-               {/*TODO:add adminId*/}
-              {/*<Route path={["/admin",*/}
-              {/*    "/admin/:adminId",*/}
-              {/*    "/admin/:adminId/sellers",*/}
-              {/*    "/admin/:adminId/products",*/}
-              {/*    "/admin/:adminId/buyers",*/}
-              {/*    ]}*/}
-              {/*       exact={true}*/}
-              {/*       component={Admin}>*/}
-              {/*</Route>*/}
                 <Route path="/admin/products/:drinkName/details"
                            exact={true}
                            component={ProductDetails}>

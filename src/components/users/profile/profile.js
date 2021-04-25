@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import userService from "../../../services/user-service";
 import SellerProfile from "./seller-profile";
 import AddressProfile from "./address-profile";
+import Admin from "../../admin/admin";
 
 export default class Profile extends React.Component {
     state = {
@@ -41,14 +42,13 @@ export default class Profile extends React.Component {
         userService.profile()
             .catch(error => {
                 alert("Not logged In!")
-                this.props.history.push('/')
+                this.props.history.push('/otherProfile')
+                // this.props.history.push('/')
             })
             .then(profile => {
                 if (profile) {
                     this.setState({userId: profile._id, profile: profile})
                 }
-                // console.log(profile)
-                // console.log(this.state.profile.names.firstName)
             })
     }
 
@@ -103,11 +103,11 @@ export default class Profile extends React.Component {
                         </div>
                         <div className='col-3'>
                             <button
-                            onClick={()=> this.props.history.push('/shopping/store')}
+                            onClick={()=> this.props.history.push('/shopping/products')}
                                 className='btn btn-success btn-block'>Browse products</button></div>
                         <div className='col-3'>
                             <button
-                                onClick={()=> this.props.history.push('/shopping/products')}
+                                onClick={()=> this.props.history.push('/shopping/store')}
                                 className='btn btn-success btn-block'>Browse stores</button></div>
                         <div className='col-3'>
                             <button
@@ -117,7 +117,22 @@ export default class Profile extends React.Component {
                 }
 
                 <br/>
-
+                {
+                    this.state.profile.role === "Admin" &&
+                    <>
+                        <div className='mb-3 row'>
+                            <h4 className='col-sm-3'>Admin Manager</h4>
+                            <div className="col-sm-9">
+                                <Link
+                                    to={`/admin/${this.state.userId}`}
+                                    className="btn btn-success btn-block"
+                                >
+                                    My Dashboard </Link>
+                            </div>
+                        </div>
+                    </>
+                }
+                <br/>
 
                 <h1>Personal Profile</h1>
                 <br/>
@@ -130,6 +145,7 @@ export default class Profile extends React.Component {
                                className="form-control"
                                id="username"
                                autoComplete="off"
+                               placeholder="username"
                                value={this.state.profile.username}/>
                     </div>
                 </div>
@@ -161,6 +177,7 @@ export default class Profile extends React.Component {
                                    curName.firstName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Gavin"
                                value={this.state.profile.names.firstName}
                         />
                     </div>
@@ -179,6 +196,7 @@ export default class Profile extends React.Component {
                                    curName.middleName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Gavin"
                                value={this.state.profile.names.middleName}
                         />
                     </div>
@@ -198,6 +216,7 @@ export default class Profile extends React.Component {
                                    curName.lastName = e.target.value
                                    this.setState({names : curName})
                                }}
+                               placeholder="Austin"
                                value={this.state.profile.names.lastName}
                         />
                     </div>
