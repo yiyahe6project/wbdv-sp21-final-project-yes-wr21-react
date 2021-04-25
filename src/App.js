@@ -12,7 +12,7 @@ import SellerStore from "./components/seller/seller-store/seller-store";
 import ProductDetails from "./components/admin/products-manager/product-details"
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
 import OrdersList from "./components/buyer/orders/orders-list";
-
+import SellerTable from "./components/admin/seller-manager/seller-table";
 function App() {
   return (
       <div className="container-fluid">
@@ -65,11 +65,15 @@ function App() {
                      exact={true}
                      component={Admin}>
               </Route>
-                <Route path="/admin/products/:drinkName/details"
+                <Route path={["/admin/products/:drinkName/details",
+                            "/products/:drinkName/details"]}
                            exact={true}
                            component={ProductDetails}>
                 </Route>
-
+              <Route path="/product/:drinkName/sellers"
+                     exact={true}
+                     component={SellerTable}>
+              </Route>
               <Route path={["/store/:sellerId", "/admin/store/:sellerId"]}
                      exact={true}>
                   <SellerStore/>

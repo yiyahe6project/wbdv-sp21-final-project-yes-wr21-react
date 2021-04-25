@@ -29,8 +29,7 @@ const Search = () => {
             })
     }
     return(
-        <div>
-            <h2>Search</h2>
+        <div className="mt-3">
             <div className="row">
                 <div className="col-9">
                     <input value={searchName}

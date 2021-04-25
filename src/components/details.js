@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useHistory, useParams} from 'react-router-dom'
+import {Link, useHistory, useParams} from 'react-router-dom'
 import cocktailService from '../services/cocktail-service'
 
 const Details = () => {
@@ -38,37 +38,45 @@ const Details = () => {
     return(
         <>
             {/*<button onClick={()=>{history.goBack()}}>Back</button>*/}
-
-            <h2>{drink.strDrink}</h2>
-            <img className="float-right"
-                 alt={drink.strDrink}
-                 src={drink.strDrinkThumb}
-                 width={700}
-                 height={700}/><br/>
-            <p>
-                <b>Category: </b>
-                {drink.strCategory}
-            </p>
-            <p>
-                <b>Instructions: </b>
-                {drink.strInstructions}
-            </p>
-            <p>
-                <b>Ingredients: </b>
-            </p>
-            <ul className="list-group">
-                {
-                    getIngredients(drink).map((ingredient, i) => {
-                        return(
-                            <li className="list-group-item" key={i}>
+            <div className="row mt-3">
+                <h2 className="col-md-9">{drink.strDrink}</h2>
+                <span className="col-md-3 pull-right">
+                    <a className=" btn btn-primary" href={`/products/${drink.strDrink}/details`}>
+                       Check stock
+                    </a>
+                </span>
+            </div>
+            <div>
+                <img className="float-right"
+                     alt={drink.strDrink}
+                     src={drink.strDrinkThumb}
+                     width={700}
+                     height={700}/><br/>
+                <p>
+                    <b>Category: </b>
+                    {drink.strCategory}
+                </p>
+                <p>
+                    <b>Instructions: </b>
+                    {drink.strInstructions}
+                </p>
+                <p>
+                    <b>Ingredients: </b>
+                </p>
+                <ul className="list-group">
+                    {
+                        getIngredients(drink).map((ingredient, i) => {
+                            return(
+                                <li className="list-group-item" key={i}>
                                     {ingredient}
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-            {/*{JSON.stringify(drink)}*/}
-            </>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+        </>
+
 
     )
 }
