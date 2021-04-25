@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+This React Application is deployer on Heroku: https://wbdv-sp21-final-project-react.herokuapp.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting Started with Create React App
 
 ## Available Scripts
 
