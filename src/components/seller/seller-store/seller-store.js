@@ -87,7 +87,7 @@ const SellerStore = ({}) => {
     }
 
     const updateProduct = (updatedProduct) => {
-        if (updatedProduct.quantity === '' || updatedProduct.price === '') {
+        if (updatedProduct.quantity === '' || updatedProduct.quantity === '0' || updatedProduct.price === '') {
             deleteProduct(updatedProduct)
         } else {
             productService.updateProduct(updatedProduct._id, updatedProduct)

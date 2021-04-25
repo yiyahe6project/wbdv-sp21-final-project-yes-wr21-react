@@ -30,10 +30,15 @@ const ProductItem = (
                                    type='number'
                                    min="0"
                                    onChange={(e) => {
+                                       if (e.target.value < 0) {
+                                           alert("Cannot set quantity to negative or undefined!")
+                                           setEditing(false)
+                                       } else {
                                        setProductCache({
                                            ...productCache,
                                            quantity: e.target.value
                                        })
+                                       }
                                    }}
                                    className="form-control"
                                    placeholder="please input product quantity"/>
@@ -50,12 +55,18 @@ const ProductItem = (
                         editing &&
                         <input value={productCache.price}
                                type='number'
-                               min="0"
-                               onChange={(e) => {
-                                   setProductCache({
-                                       ...productCache,
-                                       price: e.target.value
-                                   })
+                               min='0'
+                               onChange={(e) =>
+                               {
+                                   if (e.target.value < 0) {
+                                       alert("Cannot set price to negative or undefined!")
+                                       setEditing(false)
+                                   } else {
+                                       setProductCache({
+                                           ...productCache,
+                                           price: e.target.value
+                                       })
+                                   }
                                }}
                                className="form-control"
                                placeholder="please determine product price "/>

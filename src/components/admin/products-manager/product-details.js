@@ -23,17 +23,21 @@ const ProductDetails = () => {
     }, [])
 
     const updateProduct = (updatedProduct) => {
-        productService.updateProduct(updatedProduct._id, updatedProduct)
-            .then((res) => {
-                let updatedProducts = productList.map(product => {
-                    if (product._id === updatedProduct._id) {
-                        return updatedProduct
-                    } else {
-                        return product
-                    }
+        if (updatedProduct.quantity === '0' || updatedProduct.quantity === '' || updatedProduct.price === '') {
+            deleteProduct(updatedProduct)
+        } else {
+            productService.updateProduct(updatedProduct._id, updatedProduct)
+                .then((res) => {
+                    let updatedProducts = productList.map(product => {
+                        if (product._id === updatedProduct._id) {
+                            return updatedProduct
+                        } else {
+                            return product
+                        }
+                    })
+                    setProductList(updatedProducts)
                 })
-                setProductList(updatedProducts)
-            })
+        }
     }
 
     const deleteProduct = (deletedProduct) => {
