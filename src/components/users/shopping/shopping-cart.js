@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 const ShoppingCart = ({shoppingCartCache}) => {
     return (
         <>
-            <h1>Shopping Cart</h1>
+            <h1 className="text-primary">Shopping Cart</h1>
                 {
                     shoppingCartCache.items.length === 0 &&
                     <div>

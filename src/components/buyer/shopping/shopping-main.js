@@ -159,7 +159,7 @@ const ShoppingMain = () => {
                             <i className='fas fa-home'/>
                             Back to home
                         </div>
-                           <h1>Shopping Page</h1>
+                           <h1 className="text-primary">Welcome to Shopping Page</h1>
                         <br/>
                         <Nav className='ml-1 flex-row'
                              variant='tabs'>
