@@ -1,4 +1,4 @@
-This React Application is deployer on Heroku: https://wbdv-sp21-final-project-react.herokuapp.com/
+## This React Application is deployed on Heroku: https://wbdv-sp21-final-project-react.herokuapp.com/
 
 # Getting Started with Create React App
 
