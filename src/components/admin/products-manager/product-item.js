@@ -10,6 +10,7 @@ const ProductItem = (
     }) => {
     const [productCache, setProductCache] = useState(product)
     const [editing, setEditing] = useState(false)
+    const isAdmin = window.location.href.includes('admin')
 
     return (
             <tr>
@@ -61,24 +62,28 @@ const ProductItem = (
                     }
                 </td>
                 <td>
-                    <div className="float-right">
-                        {editing &&
+                    {isAdmin &&
+                        <div className="float-right">
+                            {editing &&
                             <i onClick={() => {
                                 setEditing(false)
                                 updateProduct(productCache)
-                                }}
+                            }}
                                className="fas fa-check color-green fa-2x"
                                style={{color: "green"}}></i>
-                        }
-                        {editing &&
+                            }
+                            {editing &&
                             <i onClick={() => {
                                 setEditing(false)
-                                deleteProduct(productCache)}}
+                                deleteProduct(productCache)
+                            }}
                                className="fas fa-times fa-2x"
                                style={{color: "red"}}></i>
-                        }
-                        {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit fa-2x" style={{color: "blue"}}></i>}
-                    </div>
+                            }
+                            {!editing &&
+                            <i onClick={() => setEditing(true)} className="fas fa-edit fa-2x" style={{color: "blue"}}></i>}
+                        </div>
+                    }
                 </td>
 
 

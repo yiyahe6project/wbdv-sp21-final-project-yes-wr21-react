@@ -1,0 +1,9 @@
+header.main-page {
+  position: relative;
+  background-color: #343a40;
+  background: url("../assets/images/bg-home.jpeg") no-repeat center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
