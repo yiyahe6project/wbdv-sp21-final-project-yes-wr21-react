@@ -10,24 +10,40 @@ const Search = () => {
     const [results, setResults] = useState({drinks: []})
     const [buyerLoggedIn, setBuyerLoggedIn] = useState(false)
     useEffect(() => {
-        setSearchName(name)
-        if (name) {
-            findCocktailByName(name)
-        }
+        if (name !== undefined && typeof name !== "undefined") {
+            console.log(name)
+            setSearchName(name)
+            cocktailService.findCocktailByName(name)
+                .then((results) => {
+                    if (results.drinks) {
+                        setResults(results)
+                    }
+                })
+
+            }
         userService.profile()
             .then((user) => {
                 if (user.role === "Buyer") {
                     setBuyerLoggedIn(true)
                 }
-
             })
+            .catch(err => {})
     }, [name])
+
     const findCocktailByName = (name) => {
         cocktailService.findCocktailByName(name)
             .then((results) => {
+                // console.log(results)
                 setResults(results)
+                if (results.drinks) {
+                    history.push(`/search/${name}`)
+                } else {
+                    alert(`Item ${name} Not found!`)
+                    history.push('/search')
+                }
             })
     }
+
     return(
         <div className="mt-3">
             <div className="row">
@@ -41,14 +57,7 @@ const Search = () => {
                 </div>
                 <div className="col-3">
                     <button
-                        onClick={() => {
-                            if (results && results.drinks) {
-                                history.push(`/search/${searchName}`)
-                            } else {
-                                history.push(`/search/${searchName}`)
-                                alert("Item not found!")
-                            }
-                        }}
+                        onClick={() => findCocktailByName(searchName)}
                         className="btn btn-primary btn-block">
                         Search
                     </button>
