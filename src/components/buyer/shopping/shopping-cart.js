@@ -6,7 +6,7 @@ const ShoppingCart = ({shoppingCartCache, updateShoppingCart,
                           deleteProductInCart}) => {
     return (
         <>
-            <h1 className="text-primary">Shopping Cart</h1>
+            <h2>Shopping Cart <i className='cart fa fa-shopping-cart'/></h2>
             {
                 shoppingCartCache.items.length === 0 &&
                 <div>

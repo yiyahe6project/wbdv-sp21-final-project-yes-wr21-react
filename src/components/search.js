@@ -9,6 +9,7 @@ const Search = () => {
     const [searchName, setSearchName] = useState("")
     const [results, setResults] = useState({drinks: []})
     const [buyerLoggedIn, setBuyerLoggedIn] = useState(false)
+    const [userName, setUsername] = useState("")
     useEffect(() => {
         setSearchName(name)
         if (name) {
@@ -18,6 +19,7 @@ const Search = () => {
             .then((user) => {
                 if (user.role === "Buyer") {
                     setBuyerLoggedIn(true)
+                    setUsername(user.username)
                 }
 
             })

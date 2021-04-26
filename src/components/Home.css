@@ -1,9 +1,12 @@
 header.main-page {
   position: relative;
-  background-color: #343a40;
-  background: url("../assets/images/bg-home.jpeg") no-repeat center;
+  background: #343a40 url("../assets/images/cocktails.png") no-repeat;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
 
+.greeting {
+  text-align: center;
+  font-size: 50px;
+}

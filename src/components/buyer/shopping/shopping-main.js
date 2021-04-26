@@ -159,7 +159,7 @@ const ShoppingMain = () => {
                             <i className='fas fa-home'/>
                             Back to home
                         </div>
-                           <h1 className="text-primary">Welcome to Shopping Page</h1>
+                           <h1>Welcome to Shopping Page</h1>
                         <br/>
                         <Nav className='ml-1 flex-row'
                              variant='tabs'>
@@ -208,7 +208,8 @@ const ShoppingMain = () => {
                             <br/>
                             <button
                                 onClick={()=> payOrder()}
-                                className='float-right btn btn-success'>Pay</button>
+                                className='float-right btn btn-success'><i
+                                className="fas fa-cash-register mr-1"></i>Pay</button>
                     </Col>
                 </Row>
             </Tab.Container>

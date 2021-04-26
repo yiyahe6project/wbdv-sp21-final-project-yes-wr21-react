@@ -199,12 +199,14 @@ const SellerStore = ({}) => {
                     <div className='col-4'>
                         <button
                             onClick={handleAddADrink}
-                            className="btn btn-success btn-block">
+                            className="btn btn-success btn-block"><i
+                            className="fas fa-plus-circle mr-1"></i>
                             Add a product
                         </button>
                     </div>
                 </div>
 
+                <br/>
                 <div className='row'>
                     <h2 className='col-10'> My products:</h2>
                 </div>

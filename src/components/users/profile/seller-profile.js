@@ -6,14 +6,7 @@ const SellerProfile = ({state, updateStorageLocation}) => {
         <>
             <br/>
             <div className='mb-3 row'>
-                <h4 className='col-sm-2'>Store Info</h4>
-                <div className="col-sm-10">
-                    <Link
-                        to={`/store/${state._id}`}
-                        className="btn btn-success btn-block"
-                    >
-                        Manage Store </Link>
-                </div>
+                <h2 className='col-sm-2'>Store Info</h2>
             </div>
             <div className="mb-3 row">
                 <label htmlFor="storeName" className="col-sm-2 col-form-label">Store name</label>

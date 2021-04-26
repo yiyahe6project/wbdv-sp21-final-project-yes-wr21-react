@@ -7,7 +7,7 @@ import Admin from "../../admin/admin";
 
 export default class Profile extends React.Component {
     state = {
-        userId: '',
+        _id: '',
         profile: {
             names: {
                 firstName: '',
@@ -46,7 +46,7 @@ export default class Profile extends React.Component {
             })
             .then(profile => {
                 if (profile) {
-                    this.setState({userId: profile._id, profile: profile})
+                    this.setState({_id: profile._id, profile: profile})
                 }
             })
     }
@@ -72,7 +72,7 @@ export default class Profile extends React.Component {
 
     handleUserUpdate = () => {
         let userInfo = {
-            userId: this.state.userId,
+            _id: this.state._id,
             userProfile: this.state.profile
         }
 
@@ -90,7 +90,7 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <nav class="navbar-light navbar-expand-lg bg-info">
+            <nav class="navbar-light navbar-expand-lg">
             <div className="container">
                 <br/>
                 {
@@ -99,20 +99,23 @@ export default class Profile extends React.Component {
                         <div className='col-3'>
                             <button
                                 onClick={() => this.props.history.push('/search')}
-                                className='btn btn-success btn-block'>Search drinks</button>
+                                className='btn btn-primary btn-block'><i className='fa fa-search mr-1'/>Search drinks</button>
                         </div>
                         <div className='col-3'>
                             <button
                             onClick={()=> this.props.history.push('/shopping/products')}
-                                className='btn btn-success btn-block'>Browse products</button></div>
+                                className='btn btn-primary btn-block'>
+                                <i className="fas fa-cocktail mr-1"/>Browse products</button></div>
                         <div className='col-3'>
                             <button
                                 onClick={()=> this.props.history.push('/shopping/store')}
-                                className='btn btn-success btn-block'>Browse stores</button></div>
+                                className='btn btn-primary btn-block'><i
+                                className="fas fa-store mr-1"/>Browse stores</button></div>
                         <div className='col-3'>
                             <button
                                 onClick={()=> this.props.history.push('/orders')}
-                                className='btn btn-success btn-block'>My orders</button></div>
+                                className='btn btn-primary btn-block'><i
+                                className="fas fa-file-invoice-dollar mr-1"/>My orders</button></div>
                     </div>
                 }
 
@@ -121,13 +124,28 @@ export default class Profile extends React.Component {
                     this.state.profile.role === "Admin" &&
                     <>
                         <div className='mb-3 row'>
-                            <h4 className='col-sm-3'>Admin Manager</h4>
-                            <div className="col-sm-9">
+                            <h4 className='col-sm-2'>Admin Manager</h4>
+                            <div className="col-sm-10">
                                 <Link
-                                    to={`/admin/${this.state.userId}`}
+                                    to={`/admin/${this.state._id}`}
                                     className="btn btn-success btn-block"
                                 >
                                     My Dashboard </Link>
+                            </div>
+                        </div>
+                    </>
+                }
+                {
+                    this.state.profile.role === "Seller" &&
+                    <>
+                        <div className='mb-3 row'>
+                            <h4 className='col-sm-2'>Manage store</h4>
+                            <div className="col-sm-10">
+                                <Link
+                                    to={`/store/${this.state._id}`}
+                                    className="btn btn-success btn-block"
+                                >
+                                    Manage Store </Link>
                             </div>
                         </div>
                     </>

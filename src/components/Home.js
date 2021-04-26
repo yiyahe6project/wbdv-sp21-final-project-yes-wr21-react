@@ -6,12 +6,16 @@ import "./Home.css"
 
 const Home = () => {
     const [loggedIn, setLoggedIn] = useState(false)
+    const [userName, setUsername] = useState("")
     const history = useHistory()
     useEffect(() => {
         userService.profile()
-            .then((user) => setLoggedIn(true))
+            .then((user) => {
+                setLoggedIn(true)
+                setUsername(user.username)
+            })
     }, [])
-    return(
+    return (
         <div>
             <nav class="navbar navbar-light bg-light static-top">
                 <div class="container">
@@ -21,20 +25,23 @@ const Home = () => {
                         <a className="btn btn-primary mr-4" href="/register">Register</a>
                         <a className="btn btn-primary mr-4" href="/profile">Profile</a>
                         {loggedIn &&
-                        <>
-                            <a onClick={() => {
-                                userService.logout()
-                                setLoggedIn(false)
-                                history.push('/')
-                                alert("successfully logout!")
-                            }}
-                               className="btn btn-danger" >Logout</a>
-                        </>}
+                         <>
+                             <a onClick={() => {
+                                 userService.logout()
+                                 setLoggedIn(false)
+                                 history.push('/')
+                                 alert("successfully logout!")
+                             }}
+                                className="btn btn-danger">Logout</a>
+                         </>}
                     </div>
                 </div>
             </nav>
 
-            <header className="main-page text-center mt-5">
+            {loggedIn &&
+             <div className='greeting'>Hello {userName}!</div>
+            }
+            <header className="main-page text-center mt-4">
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row">

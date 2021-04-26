@@ -17,7 +17,7 @@ import preSearch from "./components/preSearch";
 
 function App() {
   return (
-      <div className="container-fluid">
+      <div>
           <BrowserRouter>
               <Route path="/" exact={true}>
                   <Home/>
@@ -50,26 +50,32 @@ function App() {
                      exact={true}
                      component={PublicProfile}>
               </Route>
-              <Route path={["/shopping/:shopBy/:idDrink",
-                            "/shopping/:shopBy",
-                            "/shopping"]}
-                     exact={true}
-                     component={ShoppingMain}>
-              </Route>
-              <Route path={['/orders',
-                            '/admin/buyers/:buyer_id/orders']}
-                     exact={true}
-                     component={OrdersList}>
-              </Route>
-              <Route path={[
-                  "/admin/:adminId",
-                  "/admin/:adminId/sellers",
-                  "/admin/:adminId/products",
-                  "/admin/:adminId/buyers",
-                  ]}
-                     exact={true}
-                     component={Admin}>
-              </Route>
+              <div className='container-fluid'>
+                  <Route path={["/shopping/:shopBy/:idDrink",
+                                "/shopping/:shopBy",
+                                "/shopping"]}
+                         exact={true}
+                         component={ShoppingMain}>
+                  </Route>
+              </div>
+              <div className='container-fluid'>
+                  <Route path={['/orders',
+                                '/admin/buyers/:buyer_id/orders']}
+                         exact={true}
+                         component={OrdersList}>
+                  </Route>
+              </div>
+              <div className='container-fluid'>
+                  <Route path={[
+                      "/admin/:adminId",
+                      "/admin/:adminId/sellers",
+                      "/admin/:adminId/products",
+                      "/admin/:adminId/buyers",
+                      ]}
+                         exact={true}
+                         component={Admin}>
+                  </Route>
+              </div>
                 <Route path={["/admin/products/:drinkName/details",
                             "/products/:drinkName/details"]}
                            exact={true}
@@ -79,10 +85,12 @@ function App() {
                      exact={true}
                      component={SellerTable}>
               </Route>
+              <div className='container-fluid'>
               <Route path={["/store/:sellerId", "/admin/store/:sellerId"]}
                      exact={true}>
                   <SellerStore/>
               </Route>
+              </div>
         </BrowserRouter>
       </div>
   );

@@ -48,8 +48,13 @@ const OrdersList = ({}) => {
         <>
             {!fromAdmin &&
              <div>
-                 <br/>
                  <h1>My orders</h1>
+                 <button
+                     className="btn btn-primary mr-2"
+                     onClick={() => {
+                         history.push('/shopping')
+                     }
+                     }><i className='mr-1 fa fa-shopping-bag'/>Shopping</button>
                  <button
                      className="btn btn-danger"
                      onClick={() => {
@@ -58,8 +63,8 @@ const OrdersList = ({}) => {
                      }
                      }>Log out</button>
              </div>
-
             }
+            <br/>
             {fromAdmin &&
                 <h1>{buyer.username} orders</h1>
             }
@@ -75,7 +80,7 @@ const OrdersList = ({}) => {
             {
                 ordersCache.length !== 0 &&
                 <>
-                    <div className="container-md">
+                    <div className="mb-3">
                         {
                             ordersCache.map((order, index) =>
                                                 <OrderCell
@@ -85,7 +90,6 @@ const OrdersList = ({}) => {
                             )
                         }
                     </div>
-
                 </>
             }
         </>
