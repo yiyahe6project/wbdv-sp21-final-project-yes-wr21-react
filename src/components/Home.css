@@ -4,6 +4,7 @@ header.main-page {
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
+  background-blend-mode: exclusion;
 }
 
 .greeting {

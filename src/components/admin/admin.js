@@ -8,7 +8,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 const Admin = () => {
     const {currentPage} = useParams()
     const [key, setKey] = useState("products")
-    const adminId = useParams()
+    const {adminId} = useParams()
     const history = useHistory()
     useEffect(() => {
         history.push(`/admin/${adminId}/${key}`)
