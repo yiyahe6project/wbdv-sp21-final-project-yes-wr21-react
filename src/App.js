@@ -21,13 +21,17 @@ function App() {
               <Route path="/" exact={true}>
                   <Home/>
               </Route>
-              <Route path={["/search", "/search/:name"]}
-                     exact={true}
-                    component={Search}>
-              </Route>
-              <Route path="/details/:id" exact={true}>
-                  <Details/>
-              </Route>
+              <div className='container-fluid'>
+                  <Route path={["/search", "/search/:name"]}
+                         exact={true}
+                        component={Search}>
+                  </Route>
+              </div>
+              <div className='container-fluid'>
+                  <Route path="/details/:id" exact={true}>
+                      <Details/>
+                  </Route>
+              </div>
               <Route path="/login"
                      exact={true}
                      component={Login}>
