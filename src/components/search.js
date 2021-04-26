@@ -9,7 +9,6 @@ const Search = () => {
     const [searchName, setSearchName] = useState("")
     const [results, setResults] = useState({drinks: []})
     const [buyerLoggedIn, setBuyerLoggedIn] = useState(false)
-    const [userName, setUsername] = useState("")
     useEffect(() => {
         setSearchName(name)
         if (name) {
@@ -19,7 +18,6 @@ const Search = () => {
             .then((user) => {
                 if (user.role === "Buyer") {
                     setBuyerLoggedIn(true)
-                    setUsername(user.username)
                 }
 
             })
@@ -47,8 +45,8 @@ const Search = () => {
                             if (results && results.drinks) {
                                 history.push(`/search/${searchName}`)
                             } else {
-                                history.push(`/search`)
-                                alert("Currently Unavailable!")
+                                history.push(`/search/${searchName}`)
+                                alert("Item not found!")
                             }
                         }}
                         className="btn btn-primary btn-block">
