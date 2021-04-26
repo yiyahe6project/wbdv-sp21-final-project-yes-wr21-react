@@ -77,11 +77,13 @@ function App() {
                          component={Admin}>
                   </Route>
               </div>
+              <div className='container-fluid'>
                 <Route path={["/admin/products/:drinkName/details",
                             "/products/:drinkName/details"]}
                            exact={true}
                            component={ProductDetails}>
                 </Route>
+              </div>
               <Route path="/product/:drinkName/sellers"
                      exact={true}
                      component={SellerTable}>

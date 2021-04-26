@@ -55,28 +55,36 @@ const ProductDetails = () => {
             <button className="btn btn-primary m-3" onClick={()=>{history.goBack()}}>Back</button>
 
             <h2>{drinkName} Details</h2>
-            <Table className="product-details">
-                <thead>
-                <tr>
-                    <th className="h3" colSpan="2">Seller</th>
-                    <th className="h3 d-none d-sm-table-cell">Quantity</th>
-                    <th className="h3 d-none d-sm-table-cell">Price</th>
-                    <th className="h3 d-none d-sm-table-cell"></th>
+            {
+                productList.length === 0 &&
+                <>
+                    {drinkName} is currently not available.
+                </>
+            }
+            {
+                productList.length !== 0 &&
+                <Table className="product-details">
+                    <thead>
+                    <tr>
+                        <th className="h3" colSpan="2">Seller</th>
+                        <th className="h3 d-none d-sm-table-cell">Quantity</th>
+                        <th className="h3 d-none d-sm-table-cell">Price</th>
+                        <th className="h3 d-none d-sm-table-cell"></th>
 
-                </tr>
-                </thead>
-                <tbody>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        productList.map(product =>
+                            <ProductItem product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
+                        )
 
-                {
-                    productList.map(product =>
-                        <ProductItem product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
-                    )
+                    }
 
-                }
+                    </tbody>
 
-                </tbody>
-
-            </Table>
+                </Table>
+            }
         </div>
     )
 }
