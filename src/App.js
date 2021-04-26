@@ -13,7 +13,6 @@ import ProductDetails from "./components/admin/products-manager/product-details"
 import ShoppingMain from "./components/buyer/shopping/shopping-main";
 import OrdersList from "./components/buyer/orders/orders-list";
 import SellerTable from "./components/admin/seller-manager/seller-table";
-import preSearch from "./components/preSearch";
 
 function App() {
   return (
@@ -24,9 +23,7 @@ function App() {
               </Route>
               <Route path={["/search", "/search/:name"]}
                      exact={true}
-                    component={preSearch}>
-                  {/*<preSearch/>*/}
-                  {/*<Search/>*/}
+                    component={Search}>
               </Route>
               <Route path="/details/:id" exact={true}>
                   <Details/>
