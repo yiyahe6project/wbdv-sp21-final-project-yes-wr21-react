@@ -15,7 +15,7 @@ const ProductItem = (
     return (
             <tr>
                 <td colSpan="2">
-                    {product.seller.username}
+                    <a href={`/profile/${product.seller._id}`}>{product.seller.username}</a>
                 </td>
                 <td>
                     { !editing &&

@@ -20,6 +20,15 @@ export default class PublicProfile extends React.Component {
                 postalCode: '',
                 country: ''
             },
+            storeName: '',
+            storageLocation: {
+                addressLineOne: '',
+                addressLineTwo: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: ''
+            }
         },
         canWrite: false
     }
@@ -80,7 +89,7 @@ export default class PublicProfile extends React.Component {
                         First Name
                     </label>
                     <div className="col-sm-10">
-                        <input type="tel"
+                        <input type="text"
                                readOnly={!this.state.canWrite}
                                className="form-control"
                                id="firstName"
@@ -100,7 +109,7 @@ export default class PublicProfile extends React.Component {
                         Middle Name
                     </label>
                     <div className="col-sm-10">
-                        <input type="tel"
+                        <input type="text"
                                readOnly={!this.state.canWrite}
                                className="form-control"
                                id="middleName"
@@ -121,7 +130,7 @@ export default class PublicProfile extends React.Component {
                         Last Name
                     </label>
                     <div className="col-sm-10">
-                        <input type="tel"
+                        <input type="text"
                                readOnly={!this.state.canWrite}
                                className="form-control"
                                id="lastName"
@@ -152,6 +161,127 @@ export default class PublicProfile extends React.Component {
                         </select>
                     </div>
                 </div>
+
+                {
+                    this.state.profile.role === 'Seller' &&
+                    <>
+                        <div className='mb-3 row'>
+                            <h2 className='col-sm-2'>Store Info</h2>
+                        </div>
+                        <div className="mb-3 row">
+                            <label htmlFor="storeName" className="col-sm-2 col-form-label">Store name</label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="storeName"
+                                       value={this.state.profile.storeName}
+                                       readOnly/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="AddressLineOne" className="col-sm-2 col-form-label">Address Line
+                                1</label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="AddressLineOne"
+                                       readOnly={!this.state.canWrite}
+                                       value={this.state.profile.storageLocation.addressLineOne}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.addressLineOne = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       placeholder="Example: xxx st"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="AddressLineTwo" className="col-sm-2 col-form-label">Address Line
+                                2</label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="AddressLineTwo"
+                                       readOnly={!this.state.canWrite}
+                                       value={this.state.profile.storageLocation.addressLineTwo}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.addressLineTwo = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       placeholder="Example: xxx st"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="sellerCity" className="col-sm-2 col-form-label">City
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="sellerCity"
+                                       readOnly={!this.state.canWrite}
+                                       value={this.state.profile.storageLocation.city}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.city = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       placeholder="Example: Boston"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="sellerState" className="col-sm-2 col-form-label">State
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="sellerState"
+                                       readOnly={!this.state.canWrite}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.country = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       value={this.state.profile.storageLocation.country}
+                                       placeholder="Example: MA"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="sellerPostalCode" className="col-sm-2 col-form-label">Postal Code
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="sellerPostalCode"
+                                       readOnly={!this.state.canWrite}
+                                       value={this.state.profile.storageLocation.postalCode}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.postalCode = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       placeholder="Example: 02115"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="sellerCountry" className="col-sm-2 col-form-label">Country
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control wbdv-field wbdv-username"
+                                       id="sellerCountry"
+                                       readOnly={!this.state.canWrite}
+                                       value={this.state.profile.storageLocation.country}
+                                       onChange={(e) => {
+                                           const curStorage = this.state.profile.storageLocation
+                                           curStorage.country = e.target.value
+                                           this.setState({storageLocation: curStorage})
+                                       }}
+                                       placeholder="Example: USA"/>
+                            </div>
+                        </div>
+                    </>
+                }
+                <br/>
                 {this.state.canWrite &&
                     <>
                         <button

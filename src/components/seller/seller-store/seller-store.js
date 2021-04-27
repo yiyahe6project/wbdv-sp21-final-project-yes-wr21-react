@@ -200,7 +200,7 @@ const SellerStore = ({}) => {
                         <button
                             onClick={handleAddADrink}
                             className="btn btn-success btn-block"><i
-                            className="fas fa-plus-circle mr-1"></i>
+                            className="fas fa-plus-circle mr-1"/>
                             Add a product
                         </button>
                     </div>
