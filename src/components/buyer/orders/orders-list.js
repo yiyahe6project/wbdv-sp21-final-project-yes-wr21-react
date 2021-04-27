@@ -72,9 +72,6 @@ const OrdersList = ({}) => {
                 ordersCache.length === 0 &&
                 <>
                     <h3>No orders yet.</h3>
-                    {!fromAdmin &&
-                        <button onClick={()=>history.push('/shopping')}>Go make orders</button>
-                    }
                 </>
             }
             {
