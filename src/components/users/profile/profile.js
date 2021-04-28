@@ -7,7 +7,7 @@ import Admin from "../../admin/admin";
 
 export default class Profile extends React.Component {
     state = {
-        _id: '',
+        userId: '',
         profile: {
             names: {
                 firstName: '',
@@ -46,7 +46,7 @@ export default class Profile extends React.Component {
             })
             .then(profile => {
                 if (profile) {
-                    this.setState({_id: profile._id, profile: profile})
+                    this.setState({userId: profile._id, profile: profile})
                 }
             })
     }
@@ -72,7 +72,7 @@ export default class Profile extends React.Component {
 
     handleUserUpdate = () => {
         let userInfo = {
-            _id: this.state._id,
+            userId: this.state.userId,
             userProfile: this.state.profile
         }
 
@@ -127,7 +127,7 @@ export default class Profile extends React.Component {
                             <h4 className='col-sm-2'>Admin Manager</h4>
                             <div className="col-sm-10">
                                 <Link
-                                    to={`/admin/${this.state._id}`}
+                                    to={`/admin/${this.state.userId}`}
                                     className="btn btn-success btn-block"
                                 >
                                     My Dashboard </Link>
@@ -142,7 +142,7 @@ export default class Profile extends React.Component {
                             <h4 className='col-sm-2'>Manage store</h4>
                             <div className="col-sm-10">
                                 <Link
-                                    to={`/store/${this.state._id}`}
+                                    to={`/store/${this.state.userId}`}
                                     className="btn btn-success btn-block"
                                 >
                                     Manage Store </Link>
