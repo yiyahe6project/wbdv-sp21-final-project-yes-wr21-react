@@ -238,10 +238,10 @@ export default class PublicProfile extends React.Component {
                                        readOnly={!this.state.canWrite}
                                        onChange={(e) => {
                                            const curStorage = this.state.profile.storageLocation
-                                           curStorage.country = e.target.value
+                                           curStorage.state = e.target.value
                                            this.setState({storageLocation: curStorage})
                                        }}
-                                       value={this.state.profile.storageLocation.country}
+                                       value={this.state.profile.storageLocation.state}
                                        placeholder="Example: MA"/>
                             </div>
                         </div>
